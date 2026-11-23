@@ -57,7 +57,7 @@ npm install
 
 ## 3. Créer un environnement Python dédié
 
-Ouvre **Anaconda Prompt** (menu Démarrer), puis :
+Ouvre **Anaconda Prompt** (menu Démarrer, pas PowerShell : `conda` n'y est pas reconnu par défaut), puis :
 
 ```bat
 conda create -n motovoice python=3.11 -y
@@ -172,6 +172,7 @@ Claude écrit le script, choisit la mascotte (Pistou, Zap, Gomme, Disco ou Maill
 
 | Problème | Solution |
 |---|---|
+| `conda` n'est pas reconnu | Normal dans PowerShell : utilise **Anaconda Prompt** (menu Démarrer). Ou une fois : `& "$HOME\anaconda3\Scripts\conda.exe" init powershell` (ou `C:\ProgramData\anaconda3\...`), puis rouvre PowerShell. Pas d'Anaconda Prompt du tout ? `winget install Anaconda.Miniconda3`. |
 | `npm.ps1 ne peut pas être chargé… l'exécution de scripts est désactivée` (PowerShell) | Une fois : `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, réponds O, puis rouvre PowerShell. Ou tape `npm.cmd install`, ou utilise Anaconda Prompt / cmd. |
 | `GPU OK : False` avec une carte NVIDIA | Mets à jour le pilote NVIDIA, puis réinstalle PyTorch avec la commande `--index-url .../cu124` de l'étape 4 (`pip uninstall torch torchaudio -y` avant). |
 | `CUDA out of memory` | Ferme les jeux et logiciels 3D (Blender…), puis relance. Avec moins de 6 Go de VRAM, essaie quand même : ça passe souvent pour des phrases courtes. |
