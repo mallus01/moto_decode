@@ -40,6 +40,9 @@ const outDir = path.join(ROOT, "out", slug);
 fs.mkdirSync(path.join(gen, "voice"), { recursive: true });
 fs.mkdirSync(outDir, { recursive: true });
 
+// ---------- 0. Bruitages (générés une fois si absents) ----------
+if (!fs.existsSync(path.join(ROOT, "public", "sfx", "boom.wav"))) run(PY, [path.join("pipeline", "make_sfx.py")]);
+
 // ---------- 1. Voix off ----------
 console.log(`\n== 1/4 Voix off (${engine}) ==`);
 const texts = [...script.scenes.map((s) => s.narration), script.outro?.narration].filter(Boolean);
