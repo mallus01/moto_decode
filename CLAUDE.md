@@ -7,6 +7,9 @@ Quand l'utilisateur donne un sujet (« fais une vidéo sur la chaîne »), fais 
 Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : voir `content/moteur-4-temps/script.json` et `src/types.ts`.
 
 - `title` : `"Épisode N · <Sujet>"` (regarde les épisodes existants pour N).
+- `mascot` : la mascotte de l'épisode, celle dont la pièce est la plus proche du sujet (`src/components/Mascots.tsx`) :
+  `piston` (Pistou : moteur, huile, embrayage…), `bougie` (Zap : allumage, électricité, batterie), `pneu` (Gomme : pneus, roues, suspension),
+  `frein` (Disco : freinage, ABS), `pignon` (Maillon : transmission, chaîne, boîte). Défaut : `piston`.
 - `scenes` : 6 à 8 scènes, dans cet ordre :
   1. `hook` (1) : accroche choc en 1-2 phrases, heading = nom du sujet.
   2. `explain` (3 à 5) : comment ça marche, pièce par pièce, puis **son rôle** dans la moto.
@@ -19,7 +22,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
 
 ## 2. Les visuels
 Chaque scène a un `visual` dont `kind` est déclaré dans `src/visuals/index.tsx`.
-Existants : `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `mascot`, `logo`.
+Existants : `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `mascot` (`id`, `pose`), `logo`.
 Si le sujet en demande un nouveau (chaîne, frein, bougie, embrayage…), **crée-le** dans `src/visuals/<Nom>.tsx` :
 - SVG React, `viewBox="0 0 600 900"`, animé avec `useCurrentFrame()` (jamais de CSS animation ni `Math.random`).
 - Style cartoon : couleurs de `BRAND.colors`, contours `BRAND.stroke` (#14213D), formes simples et arrondies.
@@ -36,5 +39,7 @@ Livre `out/<slug>.mp4`. Pas de publication automatique.
 
 ## Règles
 - Intro/outro : `hyperframes/templates/*.html` (HyperFrames). Variables `{{TITLE}}`, `{{NEXT}}`, `{{DUR}}`, `{{VO_DUR}}` remplies par `pipeline/make.mjs`.
+  L'outro affiche `mascot.png`, la mascotte de l'épisode rendue par la composition Remotion `MascotStill`.
+- Planche des mascottes : `npx remotion still src/index.ts MascotSheet brand/mascottes.png`.
 - Les couleurs et polices ne changent que dans `src/brand.ts` + `hyperframes/templates/_shared.css` (garde-les synchronisés).
 - Zone sûre TikTok : rien d'important sous y=1600 ni dans les 150 px de droite.

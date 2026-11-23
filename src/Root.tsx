@@ -1,5 +1,6 @@
 import { Composition, CalculateMetadataFunction } from "remotion";
 import { MotoVideo } from "./MotoVideo";
+import { MascotSheet, MascotStill } from "./MascotSheet";
 import { FPS, HEIGHT, WIDTH } from "./brand";
 import type { VideoProps } from "./types";
 import { sceneFrames } from "./timing";
@@ -11,6 +12,7 @@ const calculateMetadata: CalculateMetadataFunction<VideoProps> = ({ props }) => 
 };
 
 export const RemotionRoot: React.FC = () => (
+  <>
   <Composition
     id="MotoVideo"
     component={MotoVideo}
@@ -21,4 +23,7 @@ export const RemotionRoot: React.FC = () => (
     defaultProps={sample as VideoProps}
     calculateMetadata={calculateMetadata}
   />
+  <Composition id="MascotSheet" component={MascotSheet} width={1920} height={800} fps={FPS} durationInFrames={90} />
+  <Composition id="MascotStill" component={MascotStill} width={600} height={620} fps={FPS} durationInFrames={1} defaultProps={{ id: "piston" as const }} />
+  </>
 );

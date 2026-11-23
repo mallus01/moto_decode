@@ -1,6 +1,7 @@
 {
   "slug": "moteur-4-temps",
   "title": "Épisode 1 · Le moteur 4 temps",
+  "mascot": "piston",
   "scenes": [
     {
       "type": "hook",

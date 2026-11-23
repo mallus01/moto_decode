@@ -4,11 +4,11 @@ import { TITLE_FONT } from "../fonts";
 import type { Scene } from "../types";
 import { Visual } from "../visuals";
 import { Captions } from "../components/Captions";
-import { Mascot } from "../components/Mascot";
+import { PartMascot, type MascotId } from "../components/Mascots";
 
 const C = BRAND.colors;
 
-export const SceneView: React.FC<{ scene: Scene; speechFrames: number }> = ({ scene, speechFrames }) => {
+export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: MascotId }> = ({ scene, speechFrames, mascot }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = spring({ frame: f, fps, config: { damping: 14, stiffness: 140 } });
@@ -46,7 +46,7 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sc
       </div>
       {(isHook || isTip) && (
         <div style={{ position: "absolute", left: isTip ? 760 : 20, top: isTip ? 1130 : 1080, transform: `scale(${enter})` }}>
-          <Mascot size={300} pose={isTip ? "wrench" : "wave"} />
+          <PartMascot id={mascot} size={300} pose={isTip ? "wrench" : "wave"} />
         </div>
       )}
       <Captions text={scene.narration} speechFrames={speechFrames} />
