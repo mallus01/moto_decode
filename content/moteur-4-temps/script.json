@@ -5,12 +5,14 @@
   "scenes": [
     {
       "type": "hook",
-      "heading": "Le moteur 4 temps",
-      "narration": "Ton moteur de moto, c'est une pompe à explosions, des dizaines de fois par seconde ! On le décode en une minute.",
+      "heading": "*50 explosions* par seconde !",
+      "kicker": "Le moteur 4 temps",
+      "narration": "À six mille tours, chaque cylindre de ta moto encaisse cinquante explosions par seconde ! Comment c'est possible ? On décode le moteur quatre temps.",
       "visual": {
-        "kind": "engine4t",
-        "stroke": "cycle",
-        "speed": 14
+        "kind": "bike",
+        "focus": "engine",
+        "boom": true,
+        "label": "MOTEUR"
       }
     },
     {

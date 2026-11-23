@@ -1,6 +1,7 @@
 import type { VisualSpec } from "../types";
 import { Engine4T } from "./Engine4T";
 import { OilCheck } from "./OilCheck";
+import { MotoBike } from "./MotoBike";
 import { PartMascot } from "../components/Mascots";
 import { LogoMark } from "../components/Logo";
 
@@ -12,6 +13,8 @@ export const Visual: React.FC<{ spec?: VisualSpec }> = ({ spec }) => {
   switch (spec.kind) {
     case "engine4t":
       return <Engine4T stroke={s.stroke} speed={s.speed} labels={s.labels} highlight={s.highlight} />;
+    case "bike":
+      return <MotoBike focus={s.focus} boom={s.boom} label={s.label} />;
     case "oilcheck":
       return <OilCheck />;
     case "mascot":

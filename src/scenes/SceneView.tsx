@@ -5,6 +5,7 @@ import type { Scene } from "../types";
 import { Visual } from "../visuals";
 import { Captions } from "../components/Captions";
 import { PartMascot, type MascotId } from "../components/Mascots";
+import { HookView } from "./HookView";
 
 const C = BRAND.colors;
 
@@ -16,6 +17,7 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
   const visScale = interpolate(enter, [0, 1], [0.6, 1]);
   const isTip = scene.type === "tip";
   const isHook = scene.type === "hook";
+  if (isHook) return <HookView scene={scene} speechFrames={speechFrames} />;
 
   return (
     <AbsoluteFill>
