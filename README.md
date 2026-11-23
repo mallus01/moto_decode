@@ -7,7 +7,7 @@ cartoon dessiné en code, voix off, sous-titres animés, intro et outro de marqu
 sujet ──► Claude écrit content/<slug>/script.json
       ──► voix off (Piper provisoire, ou TA voix clonée avec Chatterbox)
       ──► vidéo principale avec Remotion (scènes cartoon React/SVG)
-      ──► intro + outro avec HyperFrames (HTML + GSAP)
+      ──► outro avec HyperFrames (HTML + GSAP) ; la vidéo démarre direct sur l'accroche
       ──► ffmpeg assemble tout ──► out/<slug>.mp4
 ```
 

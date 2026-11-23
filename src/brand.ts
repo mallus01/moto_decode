@@ -1,6 +1,7 @@
 // Charte graphique "Moto Décode". Toutes les couleurs passent par ici.
 export const BRAND = {
   name: "MOTO DÉCODE",
+  author: "Fazerr", // nom de la chaîne TikTok, affiché « by Fazerr »
   tagline: "Ta moto, expliquée en 1 minute",
   colors: {
     ink: "#14213D", // contours cartoon + texte

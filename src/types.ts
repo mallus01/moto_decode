@@ -2,6 +2,7 @@ import type { MascotId } from "./components/Mascots";
 
 export type VisualSpec =
   | { kind: "engine4t"; stroke?: "admission" | "compression" | "combustion" | "echappement" | "cycle"; speed?: number; highlight?: "crank" | "valves" | "spark" }
+  | { kind: "bike"; focus?: "engine" | "spark" | "brake" | "tire" | "chain" | "none"; boom?: boolean; label?: string }
   | { kind: "oilcheck" }
   | { kind: "mascot"; id?: MascotId; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }
@@ -11,7 +12,8 @@ export type SceneType = "hook" | "explain" | "tip" | "outro";
 
 export type Scene = {
   type: SceneType;
-  heading?: string;
+  heading?: string; // pour le hook : phrase choc, *mots* surlignés
+  kicker?: string; // hook : petite étiquette du sujet sous la phrase
   narration: string;
   visual?: VisualSpec;
   // Rempli par le pipeline :

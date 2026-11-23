@@ -1,5 +1,5 @@
 import { BRAND } from "../brand";
-import { TITLE_FONT } from "../fonts";
+import { BODY_FONT, TITLE_FONT } from "../fonts";
 
 const C = BRAND.colors;
 
@@ -24,9 +24,31 @@ export const LogoMark: React.FC<{ size?: number; spin?: number }> = ({ size = 12
   );
 };
 
-export const Wordmark: React.FC<{ fontSize?: number }> = ({ fontSize = 64 }) => (
-  <div style={{ fontFamily: TITLE_FONT, fontSize, lineHeight: 0.95, color: C.ink, letterSpacing: 1 }}>
-    <span style={{ color: C.ink }}>MOTO </span>
-    <span style={{ color: C.orange, WebkitTextStroke: `${Math.max(2, fontSize / 22)}px ${C.ink}`, paintOrder: "stroke fill" }}>DÉCODE</span>
+export const Wordmark: React.FC<{ fontSize?: number; by?: boolean }> = ({ fontSize = 64, by = true }) => (
+  <div style={{ display: "flex", alignItems: "center", gap: fontSize * 0.25 }}>
+    <div style={{ fontFamily: TITLE_FONT, fontSize, lineHeight: 0.95, color: C.ink, letterSpacing: 1 }}>
+      <span style={{ color: C.ink }}>MOTO </span>
+      <span style={{ color: C.orange, WebkitTextStroke: `${Math.max(2, fontSize / 22)}px ${C.ink}`, paintOrder: "stroke fill" }}>DÉCODE</span>
+    </div>
+    {by && <ByTag fontSize={fontSize * 0.5} />}
+  </div>
+);
+
+// Signature « by Fazerr » (nom de la chaîne TikTok).
+export const ByTag: React.FC<{ fontSize?: number }> = ({ fontSize = 30 }) => (
+  <div
+    style={{
+      fontFamily: BODY_FONT,
+      fontWeight: 900,
+      fontSize,
+      color: C.white,
+      background: C.ink,
+      borderRadius: fontSize,
+      padding: `${fontSize * 0.1}px ${fontSize * 0.5}px ${fontSize * 0.18}px`,
+      transform: "rotate(-4deg)",
+      whiteSpace: "nowrap",
+    }}
+  >
+    by <span style={{ color: C.yellow }}>{BRAND.author}</span>
   </div>
 );
