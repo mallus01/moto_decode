@@ -130,3 +130,10 @@ run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", filters
   "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-profile:v", "high", "-pix_fmt", "yuv420p",
   "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", final]);
 console.log(`\nVidéo prête : ${final}  (${probe(final).toFixed(1)} s)`);
+// Texte de publication TikTok (description + hashtags), à copier-coller.
+if (script.description) {
+  const tags = (script.hashtags ?? []).map((h) => `#${h.replace(/^#/, "")}`).join(" ");
+  const txt = path.join(ROOT, "out", `${slug}.txt`);
+  fs.writeFileSync(txt, `${script.description}\n\n${tags}\n`, "utf-8");
+  console.log(`Description TikTok : ${txt}`);
+}

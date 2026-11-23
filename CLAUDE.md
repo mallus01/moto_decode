@@ -21,6 +21,10 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
   2. `explain` (3 à 5) : comment ça marche, pièce par pièce, puis **son rôle** dans la moto.
   3. `tip` (1) : une astuce d'entretien concrète et sûre.
 - `outro` : `{ "narration": "Abonne-toi ! La prochaine fois, on …", "next": "<sujet suivant>" }`. Dire juste « Abonne-toi », sans le nom de la chaîne.
+- `description` : texte de publication TikTok, 1re ligne = l'accroche (avec le chiffre choc), 2e ligne = résumé avec les mots clés que les gens tapent
+  dans la recherche (nom de la pièce, « entretien », « comment ça marche »), puis une question pour faire commenter. 1 à 3 emojis max.
+- `hashtags` : 4 ou 5, sans `#` : 1-2 larges (`moto`, `motard`), 2 de niche sur le sujet (`mecaniquemoto`, `entretienmoto`, `freinmoto`…),
+  + `apprendresurtiktok`. Pas de #fyp/#pourtoi. Le pipeline écrit `out/<slug>.txt` prêt à copier.
 - Narration : tutoiement, phrases courtes, ton énergique, **nombres écrits en lettres** (la voix lit mieux « quatre » que « 4 »).
   Vise ~850 caractères de narration au total (≈ 60 s).
 - `heading` des autres scènes : 1 à 4 mots. Les chiffres sont OK ici.
