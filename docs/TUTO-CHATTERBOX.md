@@ -111,7 +111,8 @@ C'est l'étape qui fait toute la qualité. Le modèle copie **le timbre et le to
    > Franchement, c'est pas si compliqué. Et avec deux ou trois astuces d'entretien,
    > ta bécane va te remercier pendant des années. Allez, on y va !
 
-4. Dans Audacity : *Effet → Normaliser* (-1 dB), coupe les blancs au début et à la fin.
+4. Dans Audacity : sélectionne tout (**Ctrl+A**), puis *Effet → Volume et compression → Normaliser…* (pic à -1 dB) ; étape facultative.
+   Coupe ensuite les blancs au début et à la fin.
 5. *Fichier → Exporter → Exporter en WAV*, enregistre sous :
    `Documents\moto_decode\voices\mattis.wav`
 
