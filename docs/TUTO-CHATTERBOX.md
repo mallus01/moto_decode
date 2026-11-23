@@ -149,6 +149,16 @@ set MOTO_VOICE_TEMPO=1.15
 comme tu parles en vidéo : debout, souriant, rythme rapide, en appuyant sur les mots clés. Un échantillon calme donnera une voix calme,
 quels que soient les réglages.
 
+### Plusieurs échantillons de voix
+
+Tu peux garder plusieurs enregistrements dans `voices\` (ex. `mattis-calme.wav`, `mattis-energique.wav`) et choisir lequel utiliser :
+
+```bat
+set MOTO_VOICE_REF=voices\mattis-energique.wav
+```
+
+Sans cette variable, c'est `voices\mattis.wav` qui est utilisé. Pour garder un choix par défaut : `setx MOTO_VOICE_REF voices\mattis-energique.wav`.
+
 ## 7. Faire une vidéo avec ta voix
 
 ```bat
@@ -157,7 +167,7 @@ npm run make -- moteur-4-temps --voice clone
 
 La vidéo finale sort dans `out\moteur-4-temps.mp4`.
 Les voix déjà générées sont gardées en cache : si tu changes une seule phrase du script, seule cette phrase est régénérée.
-Pour tout refaire (après avoir changé les réglages) : ajoute `--force-voice` (le cache ne voit pas les réglages).
+Si tu changes d'échantillon ou de réglages, les voix sont régénérées automatiquement. Pour forcer quand même : `--force-voice`.
 
 Pour que ta voix soit utilisée **par défaut** :
 
