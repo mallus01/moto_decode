@@ -129,19 +129,35 @@ python pipeline\try_voice.py "Salut les motards ! Aujourd'hui, on décode le mot
 - Au **premier lancement**, le modèle (~3 Go) se télécharge depuis Hugging Face : patiente.
 - Le résultat est dans `out\test-voix.wav`. Écoute-le.
 
-Tu n'aimes pas le rendu ? Joue sur deux réglages puis relance le test :
+Les réglages par défaut visent déjà un style **TikTok dynamique**. Pour ajuster, change une variable puis relance le test :
 
 ```bat
-set MOTO_VOICE_EXAGGERATION=0.7
-set MOTO_VOICE_CFG=0.4
+set MOTO_VOICE_EXAGGERATION=1.2
+set MOTO_VOICE_CFG=0.3
+set MOTO_VOICE_TEMP=0.9
+set MOTO_VOICE_TEMPO=1.15
 ```
 
-| Réglage | Effet | Valeurs |
-|---|---|---|
-| `MOTO_VOICE_EXAGGERATION` | expressivité, énergie | 0.3 calme → 0.8 très expressif (défaut 0.55) |
-| `MOTO_VOICE_CFG` | rythme / fidélité au texte | 0.3 plus posé → 0.7 plus rapide et strict (défaut 0.5) |
+| Réglage | Effet | Calme → très dynamique | Défaut |
+|---|---|---|---|
+| `MOTO_VOICE_EXAGGERATION` | énergie, émotion, intonation | 0.5 → 1.5 (au-delà : risque de voix qui déraille) | 1.0 |
+| `MOTO_VOICE_CFG` | plus **bas** = rythme plus libre et vivant | 0.6 → 0.2 | 0.3 |
+| `MOTO_VOICE_TEMP` | variation, naturel | 0.7 → 1.0 | 0.9 |
+| `MOTO_VOICE_TEMPO` | vitesse de parole (sans changer la hauteur) | 1.0 → 1.2 | 1.12 |
 
-Astuce : si la voix sonne « pressée » quand tu montes l'expressivité, baisse `MOTO_VOICE_CFG` vers 0.3.
+**Le plus important reste ton échantillon** : le modèle copie le ton de `voices\mattis.wav`. Pour une voix TikTok, enregistre-le
+comme tu parles en vidéo : debout, souriant, rythme rapide, en appuyant sur les mots clés. Un échantillon calme donnera une voix calme,
+quels que soient les réglages.
+
+### Plusieurs échantillons de voix
+
+Tu peux garder plusieurs enregistrements dans `voices\` (ex. `mattis-calme.wav`, `mattis-energique.wav`) et choisir lequel utiliser :
+
+```bat
+set MOTO_VOICE_REF=voices\mattis-energique.wav
+```
+
+Sans cette variable, c'est `voices\mattis.wav` qui est utilisé. Pour garder un choix par défaut : `setx MOTO_VOICE_REF voices\mattis-energique.wav`.
 
 ## 7. Faire une vidéo avec ta voix
 
@@ -151,7 +167,7 @@ npm run make -- moteur-4-temps --voice clone
 
 La vidéo finale sort dans `out\moteur-4-temps.mp4`.
 Les voix déjà générées sont gardées en cache : si tu changes une seule phrase du script, seule cette phrase est régénérée.
-Pour tout refaire (après avoir changé les réglages) : ajoute `--force-voice`.
+Si tu changes d'échantillon ou de réglages, les voix sont régénérées automatiquement. Pour forcer quand même : `--force-voice`.
 
 Pour que ta voix soit utilisée **par défaut** :
 
@@ -173,6 +189,7 @@ Claude écrit le script, choisit la mascotte (Pistou, Zap, Gomme, Disco ou Maill
 
 | Problème | Solution |
 |---|---|
+| `TypeError: 'NoneType' object is not callable` | Le paquet de filigrane de Chatterbox ne trouve pas `pkg_resources` (supprimé de setuptools 81). `pip install "setuptools<81"` puis relance. |
 | `conda` n'est pas reconnu | Normal dans PowerShell : utilise **Anaconda Prompt** (menu Démarrer). Ou une fois : `& "$HOME\anaconda3\Scripts\conda.exe" init powershell` (ou `C:\ProgramData\anaconda3\...`), puis rouvre PowerShell. Pas d'Anaconda Prompt du tout ? `winget install Anaconda.Miniconda3`. |
 | `npm.ps1 ne peut pas être chargé… l'exécution de scripts est désactivée` (PowerShell) | Une fois : `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, réponds O, puis rouvre PowerShell. Ou tape `npm.cmd install`, ou utilise Anaconda Prompt / cmd. |
 | `GPU OK : False` avec une carte NVIDIA | Mets à jour le pilote NVIDIA, puis réinstalle PyTorch avec la commande `--index-url .../cu124` de l'étape 4 (`pip uninstall torch torchaudio -y` avant). |

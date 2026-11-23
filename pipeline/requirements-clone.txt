@@ -3,4 +3,6 @@
 #    pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 # 2) Puis :
 chatterbox-tts==0.1.7
+# resemble-perth (filigrane de Chatterbox) a besoin de pkg_resources, retiré de setuptools 81
+setuptools<81
 piper-tts>=1.3

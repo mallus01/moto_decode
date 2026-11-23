@@ -16,7 +16,7 @@ Vitesse réglable : `MOTO_PIPER_SPEED=0.88` (plus petit = plus rapide).
 3. **Rends** : `npm run make -- <slug> --voice clone`
    Au premier lancement le modèle (~2 Go) est téléchargé depuis Hugging Face.
 
-Réglages : `MOTO_VOICE_EXAGGERATION` (expressivité, défaut 0.55), `MOTO_VOICE_CFG` (rythme, défaut 0.5).
+Réglages (défauts orientés TikTok) : `MOTO_VOICE_EXAGGERATION` (1.0), `MOTO_VOICE_CFG` (0.3), `MOTO_VOICE_TEMP` (0.9), `MOTO_VOICE_TEMPO` (1.12). Détails dans le tuto.
 Pour utiliser le clone par défaut : variable d'environnement `MOTO_VOICE=clone`.
 
 > `voices/` n'est pas versionné (ta voix reste sur ta machine).
