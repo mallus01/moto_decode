@@ -39,8 +39,8 @@ Résultat : `out/<slug>.mp4`. Aperçu interactif des scènes : `npm run studio`.
 
 ## Ta voix clonée
 
-Voir [`voices/README.md`](voices/README.md). En bref : enregistre 10 à 30 s de ta voix dans `voices/mattis.wav`,
-installe `pipeline/requirements-clone.txt` (PyTorch + Chatterbox, licence MIT), puis `--voice clone`.
+Tuto pas à pas : [`docs/TUTO-CHATTERBOX.md`](docs/TUTO-CHATTERBOX.md). En bref : enregistre 10 à 30 s de ta voix dans `voices/mattis.wav`,
+installe PyTorch 2.6 + `pipeline/requirements-clone.txt` (Chatterbox, licence MIT), puis `--voice clone`.
 Une carte graphique NVIDIA est fortement conseillée.
 
 ## Structure

@@ -1,3 +1,6 @@
-# Clonage de ta voix (local, gratuit). Installe d'abord PyTorch avec CUDA :
-#   https://pytorch.org/get-started/locally/
-chatterbox-tts
+# Clonage de ta voix (local, gratuit). Voir docs/TUTO-CHATTERBOX.md.
+# 1) D'abord PyTorch 2.6 avec CUDA (carte NVIDIA) :
+#    pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+# 2) Puis :
+chatterbox-tts==0.1.7
+piper-tts>=1.3

@@ -92,6 +92,11 @@ const outroItem = items.find((i) => i.name === "outro");
 const outroVo = outroItem ? probe(outroItem.wav) : 0;
 const outroDur = Math.max(3, +(outroVo + 0.9).toFixed(2));
 if (outroItem) fs.copyFileSync(outroItem.wav, path.join(hfDir, "outro.wav"));
+// Mascotte de l'épisode rendue en PNG transparent par Remotion, réutilisée dans l'outro.
+const mascotProps = path.join(gen, "mascot-props.json");
+fs.writeFileSync(mascotProps, JSON.stringify({ id: script.mascot ?? "piston" }));
+run("npx", ["remotion", "still", "src/index.ts", "MascotStill", path.join(hfDir, "mascot.png"), "--image-format=png",
+  `--props=${mascotProps}`, ...(BROWSER ? [`--browser-executable=${BROWSER}`] : [])]);
 const read = (n) => fs.readFileSync(path.join(ROOT, "hyperframes", "templates", n), "utf-8");
 fs.writeFileSync(path.join(hfDir, "intro.html"), fill(read("intro.html"), { DUR: introDur, TITLE: esc(script.title.split("·").pop().trim()) }));
 fs.writeFileSync(path.join(hfDir, "index.html"), fill(read("outro.html"), { DUR: outroDur, VO_DUR: outroVo.toFixed(2), NEXT: esc(script.outro?.next ?? "") }));
