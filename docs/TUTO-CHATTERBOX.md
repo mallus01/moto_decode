@@ -129,19 +129,25 @@ python pipeline\try_voice.py "Salut les motards ! Aujourd'hui, on décode le mot
 - Au **premier lancement**, le modèle (~3 Go) se télécharge depuis Hugging Face : patiente.
 - Le résultat est dans `out\test-voix.wav`. Écoute-le.
 
-Tu n'aimes pas le rendu ? Joue sur deux réglages puis relance le test :
+Les réglages par défaut visent déjà un style **TikTok dynamique**. Pour ajuster, change une variable puis relance le test :
 
 ```bat
-set MOTO_VOICE_EXAGGERATION=0.7
-set MOTO_VOICE_CFG=0.4
+set MOTO_VOICE_EXAGGERATION=1.2
+set MOTO_VOICE_CFG=0.3
+set MOTO_VOICE_TEMP=0.9
+set MOTO_VOICE_TEMPO=1.15
 ```
 
-| Réglage | Effet | Valeurs |
-|---|---|---|
-| `MOTO_VOICE_EXAGGERATION` | expressivité, énergie | 0.3 calme → 0.8 très expressif (défaut 0.55) |
-| `MOTO_VOICE_CFG` | rythme / fidélité au texte | 0.3 plus posé → 0.7 plus rapide et strict (défaut 0.5) |
+| Réglage | Effet | Calme → très dynamique | Défaut |
+|---|---|---|---|
+| `MOTO_VOICE_EXAGGERATION` | énergie, émotion, intonation | 0.5 → 1.5 (au-delà : risque de voix qui déraille) | 1.0 |
+| `MOTO_VOICE_CFG` | plus **bas** = rythme plus libre et vivant | 0.6 → 0.2 | 0.3 |
+| `MOTO_VOICE_TEMP` | variation, naturel | 0.7 → 1.0 | 0.9 |
+| `MOTO_VOICE_TEMPO` | vitesse de parole (sans changer la hauteur) | 1.0 → 1.2 | 1.12 |
 
-Astuce : si la voix sonne « pressée » quand tu montes l'expressivité, baisse `MOTO_VOICE_CFG` vers 0.3.
+**Le plus important reste ton échantillon** : le modèle copie le ton de `voices\mattis.wav`. Pour une voix TikTok, enregistre-le
+comme tu parles en vidéo : debout, souriant, rythme rapide, en appuyant sur les mots clés. Un échantillon calme donnera une voix calme,
+quels que soient les réglages.
 
 ## 7. Faire une vidéo avec ta voix
 
@@ -151,7 +157,7 @@ npm run make -- moteur-4-temps --voice clone
 
 La vidéo finale sort dans `out\moteur-4-temps.mp4`.
 Les voix déjà générées sont gardées en cache : si tu changes une seule phrase du script, seule cette phrase est régénérée.
-Pour tout refaire (après avoir changé les réglages) : ajoute `--force-voice`.
+Pour tout refaire (après avoir changé les réglages) : ajoute `--force-voice` (le cache ne voit pas les réglages).
 
 Pour que ta voix soit utilisée **par défaut** :
 

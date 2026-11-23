@@ -11,6 +11,8 @@ Moteurs :
 """
 import json
 import os
+import shutil
+import subprocess
 import sys
 import wave
 from pathlib import Path
@@ -36,6 +38,18 @@ def run_piper(jobs):
         print(f"  voix (piper) -> {out.name}", flush=True)
 
 
+def speed_up(path: Path, tempo: float):
+    """Accélère le débit avec ffmpeg (atempo garde la hauteur de la voix)."""
+    if abs(tempo - 1.0) < 0.01:
+        return
+    if not shutil.which("ffmpeg"):
+        print("  (ffmpeg introuvable : MOTO_VOICE_TEMPO ignoré)")
+        return
+    tmp = path.with_suffix(".tempo.wav")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(path), "-filter:a", f"atempo={tempo}", str(tmp)], check=True)
+    tmp.replace(path)
+
+
 def run_clone(jobs):
     import torch
     import torchaudio as ta
@@ -47,13 +61,18 @@ def run_clone(jobs):
     device = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
     print(f"  chargement Chatterbox sur {device}…", flush=True)
     model = ChatterboxMultilingualTTS.from_pretrained(device=device)
-    exaggeration = float(os.environ.get("MOTO_VOICE_EXAGGERATION", "0.55"))
-    cfg = float(os.environ.get("MOTO_VOICE_CFG", "0.5"))
+    # Style TikTok : expressivité haute, cfg bas (rythme plus libre), un peu plus de variation.
+    exaggeration = float(os.environ.get("MOTO_VOICE_EXAGGERATION", "1.0"))
+    cfg = float(os.environ.get("MOTO_VOICE_CFG", "0.3"))
+    temperature = float(os.environ.get("MOTO_VOICE_TEMP", "0.9"))
+    tempo = float(os.environ.get("MOTO_VOICE_TEMPO", "1.12"))  # accélère sans changer la hauteur (1.0 = aucun effet)
+    print(f"  réglages : exaggeration={exaggeration} cfg={cfg} temp={temperature} tempo={tempo}", flush=True)
     for job in jobs:
         out = Path(job["out"])
         out.parent.mkdir(parents=True, exist_ok=True)
-        wav = model.generate(job["text"], language_id="fr", audio_prompt_path=str(ref), exaggeration=exaggeration, cfg_weight=cfg)
+        wav = model.generate(job["text"], language_id="fr", audio_prompt_path=str(ref), exaggeration=exaggeration, cfg_weight=cfg, temperature=temperature)
         ta.save(str(out), wav, model.sr)
+        speed_up(out, tempo)
         print(f"  voix (clone) -> {out.name}", flush=True)
 
 
