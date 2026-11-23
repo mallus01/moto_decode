@@ -52,6 +52,9 @@ cd moto_decode
 npm install
 ```
 
+> Si PowerShell refuse `npm` (« l'exécution de scripts est désactivée sur ce système »), lance une fois
+> `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, réponds O, puis rouvre PowerShell.
+
 ## 3. Créer un environnement Python dédié
 
 Ouvre **Anaconda Prompt** (menu Démarrer), puis :
@@ -169,6 +172,7 @@ Claude écrit le script, choisit la mascotte (Pistou, Zap, Gomme, Disco ou Maill
 
 | Problème | Solution |
 |---|---|
+| `npm.ps1 ne peut pas être chargé… l'exécution de scripts est désactivée` (PowerShell) | Une fois : `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, réponds O, puis rouvre PowerShell. Ou tape `npm.cmd install`, ou utilise Anaconda Prompt / cmd. |
 | `GPU OK : False` avec une carte NVIDIA | Mets à jour le pilote NVIDIA, puis réinstalle PyTorch avec la commande `--index-url .../cu124` de l'étape 4 (`pip uninstall torch torchaudio -y` avant). |
 | `CUDA out of memory` | Ferme les jeux et logiciels 3D (Blender…), puis relance. Avec moins de 6 Go de VRAM, essaie quand même : ça passe souvent pour des phrases courtes. |
 | `No module named 'chatterbox'` | Tu n'as pas activé l'environnement : `conda activate motovoice`. |
