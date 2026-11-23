@@ -25,16 +25,16 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const words = parsePunch(scene.heading ?? "");
-  const imgIn = spring({ frame: f - 4, fps, config: { damping: 11, stiffness: 120 } });
+  const imgIn = spring({ frame: f, fps, config: { damping: 11, stiffness: 120 } });
   const shake = f < 14 ? Math.sin(f * 3.3) * (14 - f) * 1.4 : 0;
-  const kickerIn = spring({ frame: f - words.length * 3 - 8, fps, config: { damping: 14 } });
+  const kickerIn = spring({ frame: f - words.length * 2 - 4, fps, config: { damping: 14 } });
 
   return (
     <AbsoluteFill style={{ transform: `translate(${shake}px, ${shake * 0.6}px)` }}>
       {/* phrase choc */}
       <div style={{ position: "absolute", top: 320, left: 50, right: 50, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "4px 22px" }}>
         {words.map(({ w, hot }, i) => {
-          const s = spring({ frame: f - i * 3, fps, config: { damping: 9, stiffness: 200 } });
+          const s = interpolate(spring({ frame: f - i * 2, fps, config: { damping: 9, stiffness: 220 } }), [0, 1], [0.55, 1]);
           return (
             <span
               key={i}
@@ -52,7 +52,7 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
                 textTransform: "uppercase",
                 display: "inline-block",
                 transform: `scale(${s}) rotate(${hot ? -3 : 0}deg)`,
-                opacity: interpolate(s, [0, 0.3], [0, 1], { extrapolateRight: "clamp" }),
+                
               }}
             >
               {w}
@@ -61,7 +61,7 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
         })}
       </div>
       {/* image du sujet */}
-      <div style={{ position: "absolute", top: 690, left: 30, right: 30, height: 690, transform: `scale(${interpolate(imgIn, [0, 1], [1.35, 1])})`, opacity: interpolate(imgIn, [0, 0.4], [0, 1], { extrapolateRight: "clamp" }) }}>
+      <div style={{ position: "absolute", top: 690, left: 30, right: 30, height: 690, transform: `scale(${interpolate(imgIn, [0, 1], [1.25, 1])})` }}>
         <Visual spec={scene.visual} />
       </div>
       {scene.kicker && (

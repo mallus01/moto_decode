@@ -44,6 +44,7 @@ Puis vérifie quelques images avant de livrer :
 Livre `out/<slug>.mp4`. Pas de publication automatique.
 
 ## Règles
+- Pas d'intro : la vidéo démarre directement sur l'accroche (le logo d'intro HyperFrames n'est ajouté qu'avec `--intro`, à éviter).
 - Intro/outro : `hyperframes/templates/*.html` (HyperFrames). Variables `{{TITLE}}`, `{{NEXT}}`, `{{DUR}}`, `{{VO_DUR}}` remplies par `pipeline/make.mjs`.
   L'outro affiche `mascot.png`, la mascotte de l'épisode rendue par la composition Remotion `MascotStill`.
 - Planche des mascottes : `npx remotion still src/index.ts MascotSheet brand/mascottes.png`.

@@ -1,4 +1,5 @@
-// Pipeline complet : script.json -> voix off -> vidéo Remotion -> intro/outro HyperFrames -> MP4 final.
+// Pipeline complet : script.json -> voix off -> vidéo Remotion -> outro HyperFrames -> MP4 final.
+// La vidéo commence directement par l'accroche. Logo d'intro HyperFrames en option : --intro
 // Usage : npm run make -- <slug> [--voice piper|clone] [--force-voice]
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -101,12 +102,13 @@ const read = (n) => fs.readFileSync(path.join(ROOT, "hyperframes", "templates", 
 fs.writeFileSync(path.join(hfDir, "intro.html"), fill(read("intro.html"), { DUR: introDur, TITLE: esc(script.title.split("·").pop().trim()) }));
 fs.writeFileSync(path.join(hfDir, "index.html"), fill(read("outro.html"), { DUR: outroDur, VO_DUR: outroVo.toFixed(2), NEXT: esc(script.outro?.next ?? "") }));
 const hf = path.join(ROOT, "node_modules", ".bin", "hyperframes");
-run(hf, ["render", "-c", "intro.html", "-o", path.join(outDir, "intro.mp4")], { cwd: hfDir });
+const withIntro = flag("intro");
+if (withIntro) run(hf, ["render", "-c", "intro.html", "-o", path.join(outDir, "intro.mp4")], { cwd: hfDir });
 run(hf, ["render", "-o", path.join(outDir, "outro.mp4")], { cwd: hfDir });
 
 // ---------- 4. Assemblage ----------
 console.log("\n== 4/4 Assemblage final ==");
-const parts = ["intro.mp4", "main.mp4", "outro.mp4"].map((p) => path.join(outDir, p));
+const parts = [...(withIntro ? ["intro.mp4"] : []), "main.mp4", "outro.mp4"].map((p) => path.join(outDir, p));
 const hasAudio = (f) => spawnSync("ffprobe", ["-v", "error", "-select_streams", "a", "-show_entries", "stream=index", "-of", "csv=p=0", f], { encoding: "utf-8" }).stdout.trim() !== "";
 const inputs = [];
 const filters = [];
