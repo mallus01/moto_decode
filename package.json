@@ -1,0 +1,26 @@
+{
+  "name": "moto-decode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pipeline: un sujet moto -> une vidéo TikTok verticale en français (cartoon, voix off, sous-titres).",
+  "scripts": {
+    "studio": "remotion studio",
+    "make": "node pipeline/make.mjs",
+    "voice": "node pipeline/make.mjs --voice-only",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.546",
+    "@remotion/fonts": "^4.0.546",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.546"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "gsap": "^3.15.0",
+    "hyperframes": "^0.9.86",
+    "typescript": "5.8.3"
+  }
+}

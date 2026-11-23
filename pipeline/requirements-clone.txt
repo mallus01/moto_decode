@@ -1,0 +1,3 @@
+# Clonage de ta voix (local, gratuit). Installe d'abord PyTorch avec CUDA :
+#   https://pytorch.org/get-started/locally/
+chatterbox-tts

@@ -1,0 +1,90 @@
+{
+  "slug": "moteur-4-temps",
+  "title": "Épisode 1 · Le moteur 4 temps",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "Le moteur 4 temps",
+      "narration": "Ton moteur de moto, c'est une pompe à explosions, des dizaines de fois par seconde ! On le décode en une minute.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "cycle",
+        "speed": 14
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Les pièces",
+      "narration": "Dans le cylindre, un piston monte et descend. La bielle le relie au vilebrequin. En haut, deux soupapes et une bougie.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "cycle",
+        "speed": 3,
+        "labels": true
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "1. Admission",
+      "narration": "Premier temps, l'admission. Le piston descend, la soupape d'admission s'ouvre, et le cylindre aspire un mélange d'air et d'essence.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "admission",
+        "highlight": "valves"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "2. Compression",
+      "narration": "Deuxième temps, la compression. Les soupapes se ferment et le piston remonte. Il écrase le mélange dans un tout petit volume.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "compression",
+        "highlight": "piston"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "3. Combustion",
+      "narration": "Troisième temps, la combustion. La bougie fait une étincelle, le mélange s'enflamme et pousse le piston vers le bas. C'est le seul temps qui donne de la force !",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "combustion",
+        "speed": 2
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "4. Échappement",
+      "narration": "Quatrième temps, l'échappement. La soupape d'échappement s'ouvre, le piston remonte et chasse les gaz brûlés vers le pot.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "echappement",
+        "highlight": "valves"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "Le vilebrequin transforme ce va-et-vient en rotation, envoyée vers la boîte de vitesses puis la roue arrière. Deux tours de vilebrequin pour un cycle complet.",
+      "visual": {
+        "kind": "engine4t",
+        "stroke": "cycle",
+        "speed": 6,
+        "highlight": "crank"
+      }
+    },
+    {
+      "type": "tip",
+      "heading": "Le niveau d'huile",
+      "narration": "Vérifie souvent ton niveau d'huile, moto bien droite, comme l'indique ton manuel. Il doit être entre le mini et le maxi. Sans huile, ton moteur s'use à toute vitesse !",
+      "visual": {
+        "kind": "oilcheck"
+      }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi à Moto Décode ! La prochaine fois, on démonte l'embrayage.",
+    "next": "L'embrayage"
+  }
+}

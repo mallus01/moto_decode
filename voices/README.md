@@ -1,0 +1,19 @@
+# Voix off
+
+## Voix provisoire (Piper)
+`python pipeline/setup_voice.py` télécharge `fr_FR-tom-medium` dans `voices/piper/`. Rapide, CPU, gratuite.
+Vitesse réglable : `MOTO_PIPER_SPEED=0.88` (plus petit = plus rapide).
+
+## Ta voix clonée (Chatterbox Multilingual, MIT, 100 % local)
+1. **Enregistre ta voix** : 10 à 30 secondes, en français, ton naturel et énergique comme dans tes vidéos,
+   pièce calme, micro proche, sans musique. Sauvegarde en WAV : `voices/mattis.wav`.
+   (Une seule personne qui parle, pas de silence long au début.)
+2. **Installe** PyTorch avec CUDA (https://pytorch.org/get-started/locally/), puis :
+   `pip install -r pipeline/requirements-clone.txt`
+3. **Rends** : `npm run make -- <slug> --voice clone`
+   Au premier lancement le modèle (~2 Go) est téléchargé depuis Hugging Face.
+
+Réglages : `MOTO_VOICE_EXAGGERATION` (expressivité, défaut 0.55), `MOTO_VOICE_CFG` (rythme, défaut 0.5).
+Pour utiliser le clone par défaut : variable d'environnement `MOTO_VOICE=clone`.
+
+> `voices/` n'est pas versionné (ta voix reste sur ta machine).

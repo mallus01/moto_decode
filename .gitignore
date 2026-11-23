@@ -1,0 +1,9 @@
+node_modules/
+out/
+public/gen/
+voices/*
+!voices/README.md
+.venv/
+__pycache__/
+*.wav
+*.mp3
