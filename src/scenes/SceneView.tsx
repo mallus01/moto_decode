@@ -6,6 +6,7 @@ import { Visual } from "../visuals";
 import { Captions } from "../components/Captions";
 import { PartMascot, type MascotId } from "../components/Mascots";
 import { HookView } from "./HookView";
+import { Sfx } from "../components/Sfx";
 
 const C = BRAND.colors;
 
@@ -18,9 +19,19 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
   const isTip = scene.type === "tip";
   const isHook = scene.type === "hook";
   if (isHook) return <HookView scene={scene} speechFrames={speechFrames} />;
+  const v = (scene.visual ?? {}) as Record<string, unknown>;
+  // Combustion : un « zap » à chaque étincelle de la bougie (même rythme que l'animation Engine4T).
+  const zapEvery = v.kind === "engine4t" && v.stroke === "combustion" ? Math.ceil(220 / ((v.speed as number) ?? 2.6)) : 0;
+  const zaps = zapEvery ? Array.from({ length: Math.ceil(speechFrames / zapEvery) }, (_, i) => i * zapEvery) : [];
 
   return (
     <AbsoluteFill>
+      {/* bruitages */}
+      <Sfx name="whoosh" at={0} />
+      {isTip && <Sfx name="ding" at={6} />}
+      {isTip && <Sfx name="boing" at={10} volume={0.25} />}
+      {zaps.map((z) => <Sfx key={z} name="zap" at={z} />)}
+      {v.kind === "oilcheck" && <Sfx name="levelup" at={60} />}
       {scene.heading && (
         <div style={{ position: "absolute", top: 330, left: 60, right: 60, display: "flex", justifyContent: "center", transform: `translateX(${headX}px)` }}>
           <div

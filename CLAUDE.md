@@ -49,4 +49,8 @@ Livre `out/<slug>.mp4`. Pas de publication automatique.
   L'outro affiche `mascot.png`, la mascotte de l'épisode rendue par la composition Remotion `MascotStill`.
 - Planche des mascottes : `npx remotion still src/index.ts MascotSheet brand/mascottes.png`.
 - Les couleurs et polices ne changent que dans `src/brand.ts` + `hyperframes/templates/_shared.css` (garde-les synchronisés).
+- Bruitages : composant `<Sfx name="…" at={image} />` (`src/components/Sfx.tsx`), sons dans `public/sfx/` (régénérer : `python pipeline/make_sfx.py`).
+  Déjà placés automatiquement : boom + pop dans l'accroche, whoosh à chaque scène, ding dans l'astuce, zap sur la combustion, levelup sur `oilcheck`.
+  Pour un nouveau visuel, ajoute ses bruitages dans `SceneView.tsx` sur ses moments forts, sans en mettre partout.
+- Signature : « by Fazerr » (`BRAND.author`) à côté du logo.
 - Zone sûre TikTok : rien d'important sous y=1600 ni dans les 150 px de droite.

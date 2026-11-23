@@ -12,9 +12,12 @@
 </head>
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{{DUR}}" data-width="1080" data-height="1920">
+  <audio id="sfx-boom" src="sfx/boom.wav" data-start="0" data-duration="0.9" data-volume="0.5"></audio>
+  <audio id="sfx-pop" src="sfx/pop.wav" data-start="0.5" data-duration="0.11" data-volume="0.4"></audio>
   <div id="scene" class="clip center" data-start="0" data-duration="{{DUR}}">
     <div id="logo"><svg viewBox="0 0 200 200" width="420" height="420"><g class="teeth"><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(0 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(36 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(72 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(108 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(144 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(180 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(216 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(252 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(288 100 100)"/><rect x="86" y="6" width="28" height="34" rx="6" fill="#FF6B1A" stroke="#14213D" stroke-width="7" transform="rotate(324 100 100)"/><circle cx="100" cy="100" r="70" fill="#FF6B1A" stroke="#14213D" stroke-width="8"/></g><circle cx="100" cy="100" r="52" fill="#FFF4E0" stroke="#14213D" stroke-width="7"/><rect x="72" y="62" width="56" height="44" rx="8" fill="#C9D1DC" stroke="#14213D" stroke-width="6"/><line x1="72" y1="76" x2="128" y2="76" stroke="#14213D" stroke-width="5"/><line x1="100" y1="106" x2="100" y2="138" stroke="#14213D" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="140" r="9" fill="#FFC93C" stroke="#14213D" stroke-width="5"/></svg></div>
     <div id="word" class="wordmark">MOTO <span class="o">DÉCODE</span></div>
+    <div id="by" class="by">by <span>{{AUTHOR}}</span></div>
     <div id="title">{{TITLE}}</div>
   </div>
   <div id="flash" class="clip" data-start="0" data-duration="{{DUR}}"></div>
@@ -26,6 +29,7 @@
   tl.fromTo("#logo", { scale: 0, rotation: -200 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 0.05);
   tl.fromTo("#logo .teeth", { rotation: 0, transformOrigin: "100px 100px" }, { rotation: 90, duration: {{DUR}}, ease: "none" }, 0);
   tl.fromTo("#word", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 0.3);
+  tl.fromTo("#by", { scale: 0 }, { scale: 1, rotation: -4, duration: 0.3, ease: "back.out(3)" }, 0.5);
   tl.fromTo("#title", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }, 0.6);
   tl.to("#scene", { scale: 1.15, opacity: 0, duration: 0.2, ease: "power2.in" }, {{DUR}} - 0.2);
   window.__timelines["main"] = tl;

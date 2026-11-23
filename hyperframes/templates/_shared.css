@@ -9,5 +9,8 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:var(--crea
 .center { display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .wordmark { font-family:"Lilita One"; font-size:150px; line-height:.9; color:var(--ink); text-align:center; }
 .wordmark .o { color:var(--orange); -webkit-text-stroke:8px var(--ink); paint-order:stroke fill; }
+.by { font-family:"Nunito"; font-weight:900; font-size:52px; color:#fff; background:var(--ink); border-radius:50px;
+  padding:4px 30px 10px; margin-top:18px; transform:rotate(-4deg); }
+.by span { color:var(--yellow); }
 .chip { font-family:"Nunito"; font-weight:900; font-size:52px; color:#fff; background:var(--ink);
   border-radius:40px; padding:14px 40px; margin-top:50px; }

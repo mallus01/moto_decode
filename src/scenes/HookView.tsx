@@ -4,6 +4,7 @@ import { BODY_FONT, TITLE_FONT } from "../fonts";
 import type { Scene } from "../types";
 import { Visual } from "../visuals";
 import { Captions } from "../components/Captions";
+import { Sfx } from "../components/Sfx";
 
 const C = BRAND.colors;
 
@@ -31,6 +32,9 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
 
   return (
     <AbsoluteFill style={{ transform: `translate(${shake}px, ${shake * 0.6}px)` }}>
+      <Sfx name="boom" at={0} />
+      {words.map((w, i) => (w.hot && i > 0 ? <Sfx key={`p${i}`} name="pop" at={i * 2} /> : null))}
+      {scene.kicker && <Sfx name="whoosh" at={words.length * 2 + 2} volume={0.25} />}
       {/* phrase choc */}
       <div style={{ position: "absolute", top: 320, left: 50, right: 50, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "4px 22px" }}>
         {words.map(({ w, hot }, i) => {

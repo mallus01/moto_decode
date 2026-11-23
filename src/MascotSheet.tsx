@@ -11,7 +11,7 @@ export const MascotSheet: React.FC = () => {
     <AbsoluteFill>
       <Background />
       <div style={{ position: "absolute", top: 60, width: "100%", textAlign: "center", fontFamily: TITLE_FONT, fontSize: 90, color: BRAND.colors.ink }}>
-        La bande de <span style={{ color: BRAND.colors.orange }}>Moto Décode</span>
+        La bande de <span style={{ color: BRAND.colors.orange }}>Moto Décode</span> <span style={{ fontSize: 50, color: BRAND.colors.ink }}>by {BRAND.author}</span>
       </div>
       <div style={{ position: "absolute", top: 220, left: 40, right: 40, display: "flex", justifyContent: "space-between" }}>
         {ids.map((id) => (

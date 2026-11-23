@@ -86,6 +86,8 @@ fs.copyFileSync(path.join(ROOT, "hyperframes", "hyperframes.json"), path.join(hf
 fs.copyFileSync(path.join(ROOT, "hyperframes", "vendor", "gsap.min.js"), path.join(hfDir, "vendor", "gsap.min.js"));
 fs.copyFileSync(path.join(ROOT, "hyperframes", "templates", "_shared.css"), path.join(hfDir, "_shared.css"));
 for (const f of fs.readdirSync(path.join(ROOT, "public", "fonts"))) fs.copyFileSync(path.join(ROOT, "public", "fonts", f), path.join(hfDir, "fonts", f));
+fs.mkdirSync(path.join(hfDir, "sfx"), { recursive: true });
+for (const f of fs.readdirSync(path.join(ROOT, "public", "sfx"))) fs.copyFileSync(path.join(ROOT, "public", "sfx", f), path.join(hfDir, "sfx", f));
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const fill = (tpl, vars) => Object.entries(vars).reduce((s, [k, v]) => s.replaceAll(`{{${k}}}`, v), tpl);
 const introDur = 1.6;
@@ -99,11 +101,15 @@ fs.writeFileSync(mascotProps, JSON.stringify({ id: script.mascot ?? "piston" }))
 run("npx", ["remotion", "still", "src/index.ts", "MascotStill", path.join(hfDir, "mascot.png"), "--image-format=png",
   `--props=${mascotProps}`, ...(BROWSER ? [`--browser-executable=${BROWSER}`] : [])]);
 const read = (n) => fs.readFileSync(path.join(ROOT, "hyperframes", "templates", n), "utf-8");
-fs.writeFileSync(path.join(hfDir, "intro.html"), fill(read("intro.html"), { DUR: introDur, TITLE: esc(script.title.split("·").pop().trim()) }));
-fs.writeFileSync(path.join(hfDir, "index.html"), fill(read("outro.html"), { DUR: outroDur, VO_DUR: outroVo.toFixed(2), NEXT: esc(script.outro?.next ?? "") }));
 const hf = path.join(ROOT, "node_modules", ".bin", "hyperframes");
+const AUTHOR = esc(script.author ?? "Fazerr");
+// Une seule composition racine (index.html) à la fois dans le dossier, sinon HyperFrames peut doubler l'audio.
 const withIntro = flag("intro");
-if (withIntro) run(hf, ["render", "-c", "intro.html", "-o", path.join(outDir, "intro.mp4")], { cwd: hfDir });
+if (withIntro) {
+  fs.writeFileSync(path.join(hfDir, "index.html"), fill(read("intro.html"), { AUTHOR, DUR: introDur, TITLE: esc(script.title.split("·").pop().trim()) }));
+  run(hf, ["render", "-o", path.join(outDir, "intro.mp4")], { cwd: hfDir });
+}
+fs.writeFileSync(path.join(hfDir, "index.html"), fill(read("outro.html"), { AUTHOR, DUR: outroDur, VO_DUR: outroVo.toFixed(2), NEXT: esc(script.outro?.next ?? "") }));
 run(hf, ["render", "-o", path.join(outDir, "outro.mp4")], { cwd: hfDir });
 
 // ---------- 4. Assemblage ----------
