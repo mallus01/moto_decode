@@ -20,7 +20,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
      - `narration` : la phrase choc dite à l'oral (chiffres en lettres), puis « On décode … ». Vérifie que le chiffre est exact.
   2. `explain` (3 à 5) : comment ça marche, pièce par pièce, puis **son rôle** dans la moto.
   3. `tip` (1) : une astuce d'entretien concrète et sûre.
-- `outro` : `{ "narration": "Abonne-toi à Moto Décode ! La prochaine fois, on …", "next": "<sujet suivant>" }`.
+- `outro` : `{ "narration": "Abonne-toi ! La prochaine fois, on …", "next": "<sujet suivant>" }`. Dire juste « Abonne-toi », sans le nom de la chaîne.
 - Narration : tutoiement, phrases courtes, ton énergique, **nombres écrits en lettres** (la voix lit mieux « quatre » que « 4 »).
   Vise ~850 caractères de narration au total (≈ 60 s).
 - `heading` des autres scènes : 1 à 4 mots. Les chiffres sont OK ici.
