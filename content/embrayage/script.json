@@ -1,0 +1,84 @@
+{
+  "slug": "embrayage",
+  "title": "Épisode 2 · L'embrayage",
+  "mascot": "piston",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "Il baigne *dans l'huile* !",
+      "kicker": "L'embrayage",
+      "narration": "Sur la plupart des motos, l'embrayage baigne dans l'huile ! Et pourtant, il ne glisse pas. On décode l'embrayage.",
+      "visual": {
+        "kind": "bike",
+        "focus": "clutch",
+        "label": "EMBRAYAGE"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Les pièces",
+      "narration": "Côté moteur, une cloche. Côté boîte, une noix. Entre les deux, une pile de disques : des garnis liés à la cloche, des lisses liés à la noix.",
+      "visual": {
+        "kind": "clutch",
+        "state": "engaged",
+        "labels": true
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Levier relâché",
+      "narration": "Levier relâché, des ressorts serrent tous les disques. Tout tourne d'un bloc, et la force du moteur passe à la roue.",
+      "visual": {
+        "kind": "clutch",
+        "state": "engaged"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Levier tiré",
+      "narration": "Tu tires le levier : le plateau de pression recule et les disques se séparent. Le moteur tourne, la roue ne reçoit plus rien.",
+      "visual": {
+        "kind": "clutch",
+        "state": "disengaged"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Le patinage",
+      "narration": "Entre les deux, les disques frottent : c'est le point de patinage, pour démarrer en douceur. Mais trop longtemps, ils chauffent et s'usent.",
+      "visual": {
+        "kind": "clutch",
+        "state": "slip"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "Grâce à lui, tu démarres, tu passes les vitesses et tu t'arrêtes sans caler.",
+      "visual": {
+        "kind": "clutch",
+        "state": "cycle"
+      }
+    },
+    {
+      "type": "tip",
+      "heading": "La garde du levier",
+      "narration": "Avec un câble, vérifie la garde, le petit jeu du levier. Pas assez : l'embrayage patine. Trop : les vitesses accrochent. Règle-la à la molette, selon ton manuel.",
+      "visual": {
+        "kind": "clutchlever"
+      }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi ! La prochaine fois, on décode la chaîne.",
+    "next": "La chaîne"
+  },
+  "description": "Ton embrayage baigne dans l'huile 🤯 Et pourtant il ne glisse pas.\nEmbrayage moto, comment ça marche : cloche, disques, ressorts, point de patinage, et l'entretien de la garde du levier en 1 minute 🏍️\nTu as déjà calé au démarrage ? Raconte en commentaire 👇",
+  "hashtags": [
+    "moto",
+    "motard",
+    "embrayage",
+    "mecaniquemoto",
+    "apprendresurtiktok"
+  ]
+}

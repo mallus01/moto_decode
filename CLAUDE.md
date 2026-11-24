@@ -16,7 +16,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
        Ex. `"*50 explosions* par seconde !"`.
      - `kicker` : le nom du sujet (petite étiquette orange).
      - `visual` : **une image qui illustre le sujet**, en général `{ "kind": "bike", "focus": "<pièce>", "label": "<PIÈCE>" }`
-       (moto cartoon avec la pièce entourée ; `focus` = engine | spark | brake | tire | chain ; `boom: true` pour les sujets moteur).
+       (moto cartoon avec la pièce entourée ; `focus` = engine | spark | brake | tire | chain | clutch ; `boom: true` pour les sujets moteur).
      - `narration` : la phrase choc dite à l'oral (chiffres en lettres), puis « On décode … ». Vérifie que le chiffre est exact.
   2. `explain` (3 à 5) : comment ça marche, pièce par pièce, puis **son rôle** dans la moto.
   3. `tip` (1) : une astuce d'entretien concrète et sûre.
@@ -32,7 +32,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
 
 ## 2. Les visuels
 Chaque scène a un `visual` dont `kind` est déclaré dans `src/visuals/index.tsx`.
-Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `mascot` (`id`, `pose`), `logo`.
+Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `mascot` (`id`, `pose`), `logo`.
 Si le sujet en demande un nouveau (chaîne, frein, bougie, embrayage…), **crée-le** dans `src/visuals/<Nom>.tsx` :
 - SVG React, `viewBox="0 0 600 900"`, animé avec `useCurrentFrame()` (jamais de CSS animation ni `Math.random`).
 - Style cartoon : couleurs de `BRAND.colors`, contours `BRAND.stroke` (#14213D), formes simples et arrondies.
