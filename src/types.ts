@@ -2,7 +2,9 @@ import type { MascotId } from "./components/Mascots";
 
 export type VisualSpec =
   | { kind: "engine4t"; stroke?: "admission" | "compression" | "combustion" | "echappement" | "cycle"; speed?: number; highlight?: "crank" | "valves" | "spark" }
-  | { kind: "bike"; focus?: "engine" | "spark" | "brake" | "tire" | "chain" | "none"; boom?: boolean; label?: string }
+  | { kind: "bike"; focus?: "engine" | "spark" | "brake" | "tire" | "chain" | "clutch" | "none"; boom?: boolean; label?: string }
+  | { kind: "clutch"; state?: "engaged" | "disengaged" | "slip" | "cycle"; labels?: boolean }
+  | { kind: "clutchlever" }
   | { kind: "oilcheck" }
   | { kind: "mascot"; id?: MascotId; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }

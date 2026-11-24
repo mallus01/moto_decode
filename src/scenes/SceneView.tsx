@@ -7,6 +7,7 @@ import { Captions } from "../components/Captions";
 import { PartMascot, type MascotId } from "../components/Mascots";
 import { HookView } from "./HookView";
 import { Sfx } from "../components/Sfx";
+import { CLUTCH_CYCLE } from "../visuals/Clutch";
 
 const C = BRAND.colors;
 
@@ -24,6 +25,12 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
   const zapEvery = v.kind === "engine4t" && v.stroke === "combustion" ? Math.ceil(220 / ((v.speed as number) ?? 2.6)) : 0;
   const zaps = zapEvery ? Array.from({ length: Math.ceil(speechFrames / zapEvery) }, (_, i) => i * zapEvery) : [];
 
+  // Embrayage : un « pop » quand le levier est tiré.
+  const clutchPops =
+    v.kind === "clutch" && v.state === "disengaged" ? [14]
+    : v.kind === "clutch" && v.state === "cycle" ? Array.from({ length: Math.ceil(speechFrames / CLUTCH_CYCLE) }, (_, i) => i * CLUTCH_CYCLE + 8)
+    : [];
+
   return (
     <AbsoluteFill>
       {/* bruitages */}
@@ -32,6 +39,8 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
       {isTip && <Sfx name="boing" at={10} volume={0.25} />}
       {zaps.map((z) => <Sfx key={z} name="zap" at={z} />)}
       {v.kind === "oilcheck" && <Sfx name="levelup" at={60} />}
+      {clutchPops.map((z) => <Sfx key={`c${z}`} name="pop" at={z} />)}
+      {v.kind === "clutchlever" && <Sfx name="levelup" at={42} />}
       {scene.heading && (
         <div style={{ position: "absolute", top: 330, left: 60, right: 60, display: "flex", justifyContent: "center", transform: `translateX(${headX}px)` }}>
           <div

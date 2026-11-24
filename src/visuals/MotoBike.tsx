@@ -7,7 +7,7 @@ const INK = C.ink;
 const S = BRAND.stroke;
 const TIRE = "#2B2D42";
 
-export type BikeFocus = "engine" | "spark" | "brake" | "tire" | "chain" | "none";
+export type BikeFocus = "engine" | "spark" | "brake" | "tire" | "chain" | "clutch" | "none";
 
 // Position (viewBox 1000x640) de chaque pièce mise en avant.
 const FOCUS: Record<Exclude<BikeFocus, "none">, { x: number; y: number; r: number }> = {
@@ -16,6 +16,7 @@ const FOCUS: Record<Exclude<BikeFocus, "none">, { x: number; y: number; r: numbe
   brake: { x: 790, y: 455, r: 85 },
   tire: { x: 230, y: 455, r: 150 },
   chain: { x: 335, y: 455, r: 115 },
+  clutch: { x: 528, y: 380, r: 80 },
 };
 
 const Wheel: React.FC<{ cx: number; cy: number; spin: number; disc?: boolean }> = ({ cx, cy, spin, disc }) => (
@@ -100,6 +101,15 @@ export const MotoBike: React.FC<{ focus?: BikeFocus; boom?: boolean; label?: str
           <rect x={478} y={208} width={16} height={26} rx={4} fill={C.white} stroke={INK} strokeWidth={4} />
         </g>
         <circle cx={470} cy={395} r={30} fill={C.metal} stroke={INK} strokeWidth={6} />
+        {focus === "clutch" && (
+          <g>
+            <ellipse cx={528} cy={380} rx={44} ry={40} fill={C.metal} stroke={INK} strokeWidth={6} />
+            <ellipse cx={528} cy={380} rx={26} ry={24} fill="none" stroke={INK} strokeWidth={4} opacity={0.5} />
+            {[0, 90, 180, 270].map((a) => (
+              <circle key={a} cx={528 + Math.cos((a * Math.PI) / 180) * 34} cy={380 + Math.sin((a * Math.PI) / 180) * 31} r={4} fill={INK} />
+            ))}
+          </g>
+        )}
         {/* cadre + réservoir + selle */}
         <path d="M 655 170 L 560 330 M 655 175 L 430 230 L 300 260" stroke={C.ink} strokeWidth={16} strokeLinecap="round" fill="none" />
         <path d="M 440 215 Q 470 165 560 165 Q 640 168 655 205 L 640 250 Q 540 262 450 250 Z" fill={C.orange} stroke={INK} strokeWidth={S} strokeLinejoin="round" />
@@ -126,7 +136,7 @@ export const MotoBike: React.FC<{ focus?: BikeFocus; boom?: boolean; label?: str
           <circle cx={spot.x} cy={spot.y + vib} r={spot.r * pulse + 14} fill="none" stroke={INK} strokeWidth={4} strokeDasharray="14 10" strokeDashoffset={f * 2} />
           {label && (
             <g transform={`translate(${Math.min(820, spot.x + spot.r + 20)} ${Math.max(60, spot.y - spot.r - 10)}) scale(${spotIn})`}>
-              <rect x={-110} y={-42} width={220} height={66} rx={18} fill={C.yellow} stroke={INK} strokeWidth={6} />
+              <rect x={-Math.max(110, label.length * 13 + 20)} y={-42} width={Math.max(220, label.length * 26 + 40)} height={66} rx={18} fill={C.yellow} stroke={INK} strokeWidth={6} />
               <text y={6} textAnchor="middle" fontFamily={TITLE_FONT} fontSize={40} fill={INK}>{label}</text>
             </g>
           )}
