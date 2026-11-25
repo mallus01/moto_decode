@@ -7,6 +7,8 @@ export type VisualSpec =
   | { kind: "chainlink" }
   | { kind: "brake"; mode?: "parts" | "squeeze" | "heat"; labels?: boolean }
   | { kind: "brakepads" }
+  | { kind: "tire"; mode?: "marking" | "water" | "lean" }
+  | { kind: "tirecheck" }
   | { kind: "oilcheck" }
   | { kind: "mascot"; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }
