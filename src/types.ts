@@ -5,6 +5,8 @@ export type VisualSpec =
   | { kind: "clutchlever" }
   | { kind: "chain"; mode?: "parts" | "ratio" | "drive" | "slack"; labels?: boolean }
   | { kind: "chainlink" }
+  | { kind: "brake"; mode?: "parts" | "squeeze" | "heat"; labels?: boolean }
+  | { kind: "brakepads" }
   | { kind: "oilcheck" }
   | { kind: "mascot"; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }
