@@ -45,14 +45,16 @@ export const Captions: React.FC<{ text: string; speechFrames: number }> = ({ tex
       <div
         style={{
           fontFamily: BODY_FONT,
-          fontWeight: 900,
-          fontSize: 82,
+          fontWeight: 800,
+          fontSize: 74,
           lineHeight: 1.05,
           textAlign: "center",
-          color: BRAND.colors.white,
-          WebkitTextStroke: `14px ${BRAND.colors.ink}`,
-          paintOrder: "stroke fill",
-          transform: `scale(${scale}) rotate(${(idx % 2 ? 1 : -1) * 1.5}deg)`,
+          color: BRAND.colors.bg,
+          background: BRAND.colors.text,
+          borderRadius: 26,
+          padding: "10px 34px 16px",
+          boxShadow: `0 10px 0 ${BRAND.colors.metal}`,
+          transform: `scale(${scale}) rotate(0deg)`,
           textTransform: "uppercase",
         }}
       >

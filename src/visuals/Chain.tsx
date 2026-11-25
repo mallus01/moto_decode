@@ -5,7 +5,7 @@ import { BODY_FONT, TITLE_FONT } from "../fonts";
 const C = BRAND.colors;
 const INK = C.ink;
 const S = BRAND.stroke;
-const GREEN = "#2BB673";
+const GREEN = C.green;
 
 export type ChainMode = "parts" | "ratio" | "drive" | "slack";
 
@@ -99,8 +99,6 @@ const Sprocket: React.FC<{ c: typeof FRONT; angle: number; color: string }> = ({
           height={22}
           rx={5}
           fill={color}
-          stroke={INK}
-          strokeWidth={4}
           transform={`rotate(${i * step} ${c.x} ${c.y})`}
         />
       ))}
@@ -109,8 +107,6 @@ const Sprocket: React.FC<{ c: typeof FRONT; angle: number; color: string }> = ({
         cy={c.y}
         r={c.r - 4}
         fill={color}
-        stroke={INK}
-        strokeWidth={S}
       />
       {c.r > 80 &&
         [0, 72, 144, 216, 288].map((a) => (
@@ -121,8 +117,6 @@ const Sprocket: React.FC<{ c: typeof FRONT; angle: number; color: string }> = ({
             rx={c.r * 0.16}
             ry={c.r * 0.22}
             fill={C.cream}
-            stroke={INK}
-            strokeWidth={5}
             transform={`rotate(${a} ${c.x} ${c.y})`}
           />
         ))}
@@ -131,8 +125,6 @@ const Sprocket: React.FC<{ c: typeof FRONT; angle: number; color: string }> = ({
         cy={c.y}
         r={c.r * 0.28}
         fill={C.metal}
-        stroke={INK}
-        strokeWidth={5}
       />
       {/* repère pour compter les tours */}
       <circle
@@ -140,8 +132,6 @@ const Sprocket: React.FC<{ c: typeof FRONT; angle: number; color: string }> = ({
         cy={c.y - c.r + 18}
         r={9}
         fill={C.red}
-        stroke={INK}
-        strokeWidth={3}
       />
       <circle cx={c.x} cy={c.y} r={8} fill={INK} />
     </g>
@@ -157,7 +147,7 @@ const Tag: React.FC<{
   show: number;
 }> = ({ x, y, text, tx, ty, show }) => (
   <g opacity={show}>
-    <line x1={x} y1={y} x2={tx} y2={ty} stroke={INK} strokeWidth={4} />
+    <line x1={x} y1={y} x2={tx} y2={ty} stroke={C.text} strokeWidth={4} />
     <circle cx={tx} cy={ty} r={7} fill={INK} />
     <g transform={`translate(${x} ${y}) scale(${show})`}>
       <rect
@@ -167,13 +157,11 @@ const Tag: React.FC<{
         height={50}
         rx={12}
         fill={C.yellow}
-        stroke={INK}
-        strokeWidth={5}
       />
       <text
         y={10}
         textAnchor="middle"
-        fontFamily={TITLE_FONT}
+        fontFamily={TITLE_FONT} fontWeight={800}
         fontSize={32}
         fill={INK}
       >
@@ -198,8 +186,6 @@ const Counter: React.FC<{
       height={110}
       rx={20}
       fill={C.white}
-      stroke={INK}
-      strokeWidth={S}
     />
     <rect
       x={-120}
@@ -208,13 +194,11 @@ const Counter: React.FC<{
       height={40}
       rx={18}
       fill={color}
-      stroke={INK}
-      strokeWidth={5}
     />
     <text
       y={-21}
       textAnchor="middle"
-      fontFamily={TITLE_FONT}
+      fontFamily={TITLE_FONT} fontWeight={800}
       fontSize={28}
       fill={INK}
     >
@@ -223,7 +207,7 @@ const Counter: React.FC<{
     <text
       y={45}
       textAnchor="middle"
-      fontFamily={TITLE_FONT}
+      fontFamily={TITLE_FONT} fontWeight={800}
       fontSize={50}
       fill={INK}
     >
@@ -276,17 +260,13 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             cx={REAR.x}
             cy={REAR.y}
             r={192}
-            fill="#2B2D42"
-            stroke={INK}
-            strokeWidth={S}
+            fill={C.ink}
           />
           <circle
             cx={REAR.x}
             cy={REAR.y}
             r={165}
             fill={C.cream}
-            stroke={INK}
-            strokeWidth={5}
           />
           <rect
             x={20}
@@ -295,16 +275,14 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             height={170}
             rx={26}
             fill={C.grey}
-            stroke={INK}
-            strokeWidth={S}
           />
           <text
             x={95}
             y={FRONT.y - 95}
             textAnchor="middle"
-            fontFamily={TITLE_FONT}
+            fontFamily={TITLE_FONT} fontWeight={800}
             fontSize={34}
-            fill={INK}
+            fill={C.text}
           >
             BOÎTE
           </text>
@@ -327,8 +305,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={20}
               rx={10}
               fill={i % 2 ? C.metal : C.grey}
-              stroke={INK}
-              strokeWidth={4}
             />
             <circle r={4.5} fill={INK} />
           </g>
@@ -348,9 +324,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               <path
                 d="M -22 -14 L 4 -14 L 4 -26 L 28 0 L 4 26 L 4 14 L -22 14 Z"
                 fill={C.yellow}
-                stroke={INK}
-                strokeWidth={5}
-                strokeLinejoin="round"
               />
             </g>
           );
@@ -364,13 +337,11 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             height={92}
             rx={22}
             fill={C.yellow}
-            stroke={INK}
-            strokeWidth={S}
           />
           <text
             y={18}
             textAnchor="middle"
-            fontFamily={TITLE_FONT}
+            fontFamily={TITLE_FONT} fontWeight={800}
             fontSize={48}
             fill={INK}
           >
@@ -409,9 +380,9 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             x={FRONT.x}
             y={FRONT.y - 85}
             textAnchor="middle"
-            fontFamily={TITLE_FONT}
+            fontFamily={TITLE_FONT} fontWeight={800}
             fontSize={34}
-            fill={INK}
+            fill={C.text}
           >
             15 dents
           </text>
@@ -419,9 +390,9 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             x={REAR.x}
             y={REAR.y - 180}
             textAnchor="middle"
-            fontFamily={TITLE_FONT}
+            fontFamily={TITLE_FONT} fontWeight={800}
             fontSize={34}
-            fill={INK}
+            fill={C.text}
           >
             45 dents
           </text>
@@ -455,8 +426,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={110}
               rx={20}
               fill={C.cream}
-              stroke={INK}
-              strokeWidth={S}
             />
             <rect
               x={-14}
@@ -465,8 +434,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={22}
               rx={8}
               fill={C.white}
-              stroke={INK}
-              strokeWidth={4}
             />
           </g>
           <g transform={`translate(${path.mid.x - 60} ${path.mid.y + 15})`}>
@@ -491,14 +458,12 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={56}
               rx={14}
               fill={C.yellow}
-              stroke={INK}
-              strokeWidth={5}
             />
             <text
               x={-45}
               y={144}
               textAnchor="middle"
-              fontFamily={TITLE_FONT}
+              fontFamily={TITLE_FONT} fontWeight={800}
               fontSize={36}
               fill={INK}
             >
@@ -510,9 +475,9 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
             y={870}
             textAnchor="middle"
             fontFamily={BODY_FONT}
-            fontWeight={900}
+            fontWeight={800}
             fontSize={34}
-            fill={INK}
+            fill={C.text}
           >
             Valeur : voir ton manuel
           </text>
@@ -527,8 +492,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={160}
               rx={18}
               fill={GREEN}
-              stroke={INK}
-              strokeWidth={S}
             />
             <rect
               x={-18}
@@ -537,13 +500,11 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
               height={34}
               rx={8}
               fill={C.white}
-              stroke={INK}
-              strokeWidth={5}
             />
             <text
               y={14}
               textAnchor="middle"
-              fontFamily={TITLE_FONT}
+              fontFamily={TITLE_FONT} fontWeight={800}
               fontSize={26}
               fill={C.white}
               transform="rotate(-90)"
@@ -561,8 +522,6 @@ export const Chain: React.FC<{ mode?: ChainMode; labels?: boolean }> = ({
                   cy={170 + k * 110}
                   r={7 - k * 3}
                   fill={GREEN}
-                  stroke={INK}
-                  strokeWidth={2}
                   opacity={1 - k}
                 />
               );
@@ -601,14 +560,12 @@ export const ChainLink: React.FC = () => {
         width={600}
         height={440}
         rx={40}
-        fill={C.white}
-        stroke={INK}
-        strokeWidth={S}
+        fill={C.inside}
       />
       <g clipPath="url(#linkzoom)">
         {/* rouleaux (visibles dans la moitié du bas, en coupe) */}
         {pins.map((x, k) => (
-          <circle key={`rb${k}`} cx={x} cy={CY} r={60} fill={C.orange} stroke={INK} strokeWidth={6} />
+          <circle key={`rb${k}`} cx={x} cy={CY} r={60} fill={C.orange} />
         ))}
         <g clipPath="url(#linktop)">
         {/* plaques intérieures puis extérieures, en alternance */}
@@ -623,8 +580,6 @@ export const ChainLink: React.FC = () => {
               height={156}
               rx={78}
               fill={C.metal}
-              stroke={INK}
-              strokeWidth={6}
             />
           );
         })}
@@ -636,8 +591,6 @@ export const ChainLink: React.FC = () => {
               <path
                 d={`M ${x - 90} ${CY} a 90 90 0 0 1 90 -90 L ${x + P} ${CY - 90} a 90 90 0 0 1 0 180 L ${x} ${CY + 90} a 90 90 0 0 1 -90 -90 Z`}
                 fill={C.grey}
-                stroke={INK}
-                strokeWidth={6}
                 opacity={0.92}
               />
             </g>
@@ -660,8 +613,6 @@ export const ChainLink: React.FC = () => {
               cy={CY}
               r={24}
               fill={C.metal}
-              stroke={INK}
-              strokeWidth={5}
             />
           </g>
         ))}

@@ -28,7 +28,7 @@ const pinY = (deg: number) => {
 };
 
 /**
- * Coupe cartoon d'un moteur 4 temps monocylindre.
+ * Coupe flat d'un moteur 4 temps monocylindre.
  * - stroke: un temps précis (boucle sur ce demi-tour) ou "cycle" (les 4 temps).
  * - speed: degrés de vilebrequin par image.
  * - labels: affiche le nom des pièces.
@@ -83,34 +83,34 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
   return (
     <svg viewBox="0 0 600 900" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* --- carter --- */}
-      <circle cx={CX} cy={CY} r={135} fill={C.white} stroke={C.ink} strokeWidth={S} />
+      <circle cx={CX} cy={CY} r={135} fill={C.inside} />
       {/* --- cylindre --- */}
-      <rect x={180} y={CHAMBER_TOP - 10} width={240} height={420} rx={14} fill={C.metal} stroke={C.ink} strokeWidth={S} />
-      <rect x={200} y={CHAMBER_TOP} width={200} height={380} fill={C.white} />
+      <rect x={180} y={CHAMBER_TOP - 10} width={240} height={420} rx={14} fill={C.metal} />
+      <rect x={200} y={CHAMBER_TOP} width={200} height={380} fill={C.inside} />
       {/* ailettes de refroidissement */}
       {[300, 350, 400, 450, 500].map((y) => (
         <g key={y}>
-          <rect x={140} y={y} width={44} height={18} rx={6} fill={C.metal} stroke={C.ink} strokeWidth={5} />
-          <rect x={416} y={y} width={44} height={18} rx={6} fill={C.metal} stroke={C.ink} strokeWidth={5} />
+          <rect x={140} y={y} width={44} height={18} rx={6} fill={C.metal} />
+          <rect x={416} y={y} width={44} height={18} rx={6} fill={C.metal} />
         </g>
       ))}
       {/* gaz */}
       <rect x={200} y={CHAMBER_TOP} width={200} height={Math.max(0, pistonTop - CHAMBER_TOP)} fill={gas} opacity={gasOpacity} />
       {phase.key === "compression" &&
         [0, 1, 2, 3, 4].map((i) => (
-          <circle key={i} cx={225 + i * 38} cy={CHAMBER_TOP + (pistonTop - CHAMBER_TOP) * (0.3 + 0.4 * ((i * 37) % 10) / 10)} r={6 + inPhase * 5} fill={C.sky} stroke={C.ink} strokeWidth={3} />
+          <circle key={i} cx={225 + i * 38} cy={CHAMBER_TOP + (pistonTop - CHAMBER_TOP) * (0.3 + 0.4 * ((i * 37) % 10) / 10)} r={6 + inPhase * 5} fill={C.sky} />
         ))}
 
       {/* --- culasse + conduits --- */}
-      <path d={`M 150 ${CHAMBER_TOP - 10} L 150 150 L 450 150 L 450 ${CHAMBER_TOP - 10} Z`} fill={C.metal} stroke={C.ink} strokeWidth={S} strokeLinejoin="round" />
+      <path d={`M 150 ${CHAMBER_TOP - 10} L 150 150 L 450 150 L 450 ${CHAMBER_TOP - 10} Z`} fill={C.metal} />
       {/* conduit d'admission (gauche) */}
-      <path d={`M 40 175 L 215 175 L 265 ${CHAMBER_TOP} L 225 ${CHAMBER_TOP} L 195 215 L 40 215 Z`} fill={phase.key === "admission" ? C.sky : C.white} opacity={phase.key === "admission" ? 0.9 : 1} stroke={C.ink} strokeWidth={6} strokeLinejoin="round" />
+      <path d={`M 40 175 L 215 175 L 265 ${CHAMBER_TOP} L 225 ${CHAMBER_TOP} L 195 215 L 40 215 Z`} fill={phase.key === "admission" ? C.sky : C.inside} opacity={phase.key === "admission" ? 0.9 : 1} />
       {/* conduit d'échappement (droite) */}
-      <path d={`M 560 175 L 385 175 L 335 ${CHAMBER_TOP} L 375 ${CHAMBER_TOP} L 405 215 L 560 215 Z`} fill={phase.key === "echappement" ? C.grey : C.white} opacity={phase.key === "echappement" ? 0.9 : 1} stroke={C.ink} strokeWidth={6} strokeLinejoin="round" />
+      <path d={`M 560 175 L 385 175 L 335 ${CHAMBER_TOP} L 375 ${CHAMBER_TOP} L 405 215 L 560 215 Z`} fill={phase.key === "echappement" ? C.grey : C.inside} opacity={phase.key === "echappement" ? 0.9 : 1} />
       {phase.key === "admission" &&
-        particles.map((p, i) => <circle key={i} cx={50 + p * 190} cy={195 + p * p * 60} r={8} fill={C.white} stroke={C.ink} strokeWidth={3} />)}
+        particles.map((p, i) => <circle key={i} cx={50 + p * 190} cy={195 + p * p * 60} r={8} fill={C.white} />)}
       {phase.key === "echappement" &&
-        particles.map((p, i) => <circle key={i} cx={360 + p * 220} cy={240 - p * 45 + Math.sin(p * 12) * 6} r={10 + p * 12} fill={C.grey} stroke={C.ink} strokeWidth={3} opacity={1 - p * 0.7} />)}
+        particles.map((p, i) => <circle key={i} cx={360 + p * 220} cy={240 - p * 45 + Math.sin(p * 12) * 6} r={10 + p * 12} fill={C.grey} opacity={1 - p * 0.7} />)}
 
       {/* soupapes */}
       {[
@@ -118,9 +118,9 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
         { x: 355, lift: exhaustLift, color: C.grey },
       ].map((v) => (
         <g key={v.x} transform={`translate(0 ${v.lift})`}>
-          <rect x={v.x - 7} y={110} width={14} height={CHAMBER_TOP - 118} fill={C.white} stroke={C.ink} strokeWidth={5} />
-          <path d={`M ${v.x - 38} ${CHAMBER_TOP} L ${v.x - 10} ${CHAMBER_TOP - 18} L ${v.x + 10} ${CHAMBER_TOP - 18} L ${v.x + 38} ${CHAMBER_TOP} Z`} fill={C.white} stroke={highlight === "valves" ? C.red : C.ink} strokeWidth={highlight === "valves" ? 8 + pulse * 4 : 6} strokeLinejoin="round" />
-          <rect x={v.x - 22} y={100} width={44} height={16} rx={5} fill={v.color} stroke={C.ink} strokeWidth={5} />
+          <rect x={v.x - 7} y={110} width={14} height={CHAMBER_TOP - 118} fill={C.inside} />
+          <path d={`M ${v.x - 38} ${CHAMBER_TOP} L ${v.x - 10} ${CHAMBER_TOP - 18} L ${v.x + 10} ${CHAMBER_TOP - 18} L ${v.x + 38} ${CHAMBER_TOP} Z`} fill={C.inside} stroke={highlight === "valves" ? C.red : C.ink} strokeWidth={highlight === "valves" ? 8 + pulse * 4 : 6} strokeLinejoin="round" />
+          <rect x={v.x - 22} y={100} width={44} height={16} rx={5} fill={v.color} />
         </g>
       ))}
 
@@ -128,12 +128,12 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
       <g stroke={C.ink} strokeWidth={6} strokeLinejoin="round">
         <rect x={286} y={CHAMBER_TOP - 40} width={28} height={40} fill={C.metal} />
         <rect x={272} y={CHAMBER_TOP - 85} width={56} height={46} fill={C.grey} />
-        <rect x={282} y={50} width={36} height={CHAMBER_TOP - 135} rx={10} fill={C.white} />
+        <rect x={282} y={50} width={36} height={CHAMBER_TOP - 135} rx={10} fill={C.inside} />
         <rect x={290} y={28} width={20} height={26} rx={5} fill={C.metal} />
       </g>
       {(spark || highlight === "spark") && (
         <g transform={`translate(300 ${CHAMBER_TOP + 8}) scale(${spark ? 1.2 : 0.6 + pulse * 0.3})`}>
-          <path d="M 0 -30 L 9 -9 L 32 -12 L 13 4 L 26 26 L 0 12 L -26 26 L -13 4 L -32 -12 L -9 -9 Z" fill={C.yellow} stroke={C.ink} strokeWidth={5} strokeLinejoin="round" />
+          <path d="M 0 -30 L 9 -9 L 32 -12 L 13 4 L 26 26 L 0 12 L -26 26 L -13 4 L -32 -12 L -9 -9 Z" fill={C.yellow} />
         </g>
       )}
       {phase.key === "combustion" && inPhase < 0.5 && (
@@ -154,15 +154,15 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
       </g>
       <line x1={203} y1={pistonTop + 20} x2={397} y2={pistonTop + 20} stroke={C.ink} strokeWidth={5} />
       <line x1={203} y1={pistonTop + 36} x2={397} y2={pistonTop + 36} stroke={C.ink} strokeWidth={5} />
-      <circle cx={CX} cy={pY} r={16} fill={C.yellow} stroke={C.ink} strokeWidth={6} />
+      <circle cx={CX} cy={pY} r={16} fill={C.yellow} />
 
       {/* --- vilebrequin --- */}
       <g transform={`rotate(${deg} ${CX} ${CY})`}>
         <path d={`M ${CX - 95} ${CY + 30} A 100 100 0 0 0 ${CX + 95} ${CY + 30} L ${CX + 40} ${CY - 20} L ${CX - 40} ${CY - 20} Z`} fill={C.grey} stroke={highlight === "crank" ? C.red : C.ink} strokeWidth={highlight === "crank" ? S + pulse * 5 : S} strokeLinejoin="round" />
-        <rect x={CX - 26} y={CY - R - 20} width={52} height={R + 30} rx={20} fill={C.metal} stroke={C.ink} strokeWidth={6} />
+        <rect x={CX - 26} y={CY - R - 20} width={52} height={R + 30} rx={20} fill={C.metal} />
       </g>
-      <circle cx={CX} cy={CY} r={22} fill={C.yellow} stroke={C.ink} strokeWidth={6} />
-      <circle cx={crankX} cy={crankY} r={14} fill={C.yellow} stroke={C.ink} strokeWidth={5} />
+      <circle cx={CX} cy={CY} r={22} fill={C.yellow} />
+      <circle cx={crankX} cy={crankY} r={14} fill={C.yellow} />
       {highlight === "crank" && (
         <path d={`M ${CX + 150} ${CY - 40} A 155 155 0 0 1 ${CX + 60} ${CY + 145}`} fill="none" stroke={C.red} strokeWidth={12} strokeLinecap="round" markerEnd="url(#arrow)" />
       )}
@@ -173,7 +173,7 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
       </defs>
 
       {labels && (
-        <g fontFamily={BODY_FONT} fontWeight={900} fontSize={30} fill={C.ink}>
+        <g fontFamily={BODY_FONT} fontWeight={800} fontSize={30} fill={C.ink}>
           <Tag x={0} y={250} text="Admission" />
           <Tag x={400} y={250} text="Échappement" />
           <Tag x={330} y={40} text="Bougie" />
@@ -186,7 +186,7 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
       {/* badge du temps en cours */}
       <g transform="translate(300 875)">
         <rect x={-210} y={-44} width={420} height={80} rx={40} fill={phase.key === "combustion" ? C.red : C.ink} />
-        <text textAnchor="middle" y={14} fontFamily={TITLE_FONT} fontSize={46} fill={C.white} letterSpacing={2}>
+        <text textAnchor="middle" y={14} fontFamily={TITLE_FONT} fontWeight={800} fontSize={46} fill={C.white} letterSpacing={2}>
           {phase.label}
         </text>
       </g>
@@ -196,7 +196,7 @@ export const Engine4T: React.FC<{ stroke?: Stroke; speed?: number; labels?: bool
 
 const Tag: React.FC<{ x: number; y: number; text: string }> = ({ x, y, text }) => (
   <g transform={`translate(${x} ${y})`}>
-    <rect x={-8} y={-30} width={text.length * 17 + 20} height={42} rx={12} fill={BRAND.colors.yellow} stroke={BRAND.colors.ink} strokeWidth={4} />
+    <rect x={-8} y={-30} width={text.length * 17 + 20} height={42} rx={12} fill={BRAND.colors.yellow} />
     <text x={2} y={0}>{text}</text>
   </g>
 );

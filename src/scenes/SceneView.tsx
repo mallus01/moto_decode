@@ -51,16 +51,16 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
           <div
             style={{
               fontFamily: TITLE_FONT,
+              fontWeight: 800,
               fontSize: isHook ? 100 : 84,
               lineHeight: 1,
               textAlign: "center",
-              color: isTip ? C.ink : C.white,
-              background: isTip ? C.yellow : isHook ? C.orange : C.ink,
-              border: `${BRAND.stroke}px solid ${C.ink}`,
+              color: isTip ? C.ink : C.text,
+              background: isTip ? C.orange : isHook ? C.orange : C.blue,
               borderRadius: 28,
               padding: "18px 36px 24px",
-              boxShadow: `10px 10px 0 ${C.ink}`,
-              transform: `rotate(${isHook ? -2 : -1}deg)`,
+              boxShadow: `0 12px 0 ${isTip ? "#B87A06" : C.blueDk}`,
+              transform: `rotate(0deg)`,
             }}
           >
             {isTip && <div style={{ fontSize: 44, letterSpacing: 3, marginBottom: 6 }}>ASTUCE ENTRETIEN</div>}

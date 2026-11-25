@@ -10,25 +10,26 @@ export const LogoMark: React.FC<{ size?: number; spin?: number }> = ({ size = 12
     <svg width={size} height={size} viewBox="0 0 200 200">
       <g transform={`rotate(${spin} 100 100)`}>
         {teeth.map((a) => (
-          <rect key={a} x="86" y="6" width="28" height="34" rx="6" fill={C.orange} stroke={C.ink} strokeWidth="7" transform={`rotate(${a} 100 100)`} />
+          <rect key={a} x="86" y="6" width="28" height="34" rx="6" fill={C.orange} transform={`rotate(${a} 100 100)`} />
         ))}
-        <circle cx="100" cy="100" r="70" fill={C.orange} stroke={C.ink} strokeWidth="8" />
+        <circle cx="100" cy="100" r="70" fill={C.orange} />
       </g>
-      <circle cx="100" cy="100" r="52" fill={C.cream} stroke={C.ink} strokeWidth="7" />
+      <circle cx="100" cy="100" r="52" fill={C.cream} />
       {/* piston */}
-      <rect x="72" y="62" width="56" height="44" rx="8" fill={C.metal} stroke={C.ink} strokeWidth="6" />
+      <rect x="72" y="62" width="56" height="44" rx="8" fill={C.metal} />
       <line x1="72" y1="76" x2="128" y2="76" stroke={C.ink} strokeWidth="5" />
-      <line x1="100" y1="106" x2="100" y2="138" stroke={C.ink} strokeWidth="10" strokeLinecap="round" />
-      <circle cx="100" cy="140" r="9" fill={C.yellow} stroke={C.ink} strokeWidth="5" />
+      <line x1="100" y1="106" x2="100" y2="138" stroke={C.metal} strokeWidth="10" strokeLinecap="round" />
+      <circle cx="100" cy="140" r="9" fill={C.yellow} />
     </svg>
   );
 };
 
 export const Wordmark: React.FC<{ fontSize?: number; by?: boolean }> = ({ fontSize = 64, by = true }) => (
   <div style={{ display: "flex", alignItems: "center", gap: fontSize * 0.25 }}>
-    <div style={{ fontFamily: TITLE_FONT, fontSize, lineHeight: 0.95, color: C.ink, letterSpacing: 1 }}>
-      <span style={{ color: C.ink }}>MOTO </span>
-      <span style={{ color: C.orange, WebkitTextStroke: `${Math.max(2, fontSize / 22)}px ${C.ink}`, paintOrder: "stroke fill" }}>DÉCODE</span>
+    <div style={{ fontFamily: TITLE_FONT,
+              fontWeight: 800, fontSize, lineHeight: 0.95, color: C.text, letterSpacing: 1 }}>
+      <span style={{ color: C.text }}>MOTO </span>
+      <span style={{ color: C.orange }}>DÉCODE</span>
     </div>
     {by && <ByTag fontSize={fontSize * 0.5} />}
   </div>
@@ -39,16 +40,15 @@ export const ByTag: React.FC<{ fontSize?: number }> = ({ fontSize = 30 }) => (
   <div
     style={{
       fontFamily: BODY_FONT,
-      fontWeight: 900,
+      fontWeight: 800,
       fontSize,
-      color: C.white,
-      background: C.ink,
+      color: C.text,
+      background: C.deco,
       borderRadius: fontSize,
       padding: `${fontSize * 0.1}px ${fontSize * 0.5}px ${fontSize * 0.18}px`,
-      transform: "rotate(-4deg)",
       whiteSpace: "nowrap",
     }}
   >
-    by <span style={{ color: C.yellow }}>{BRAND.author}</span>
+    by <span style={{ color: C.orange }}>{BRAND.author}</span>
   </div>
 );
