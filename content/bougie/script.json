@@ -1,0 +1,49 @@
+{
+  "slug": "bougie",
+  "title": "Épisode 6 · La bougie",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "Jusqu'à *30\u00a0000 volts* !",
+      "kicker": "La bougie",
+      "narration": "Jusqu'à trente mille volts, des dizaines de fois par seconde, dans un petit bout de céramique ! On décode la bougie.",
+      "visual": { "kind": "bike", "focus": "spark", "label": "BOUGIE" }
+    },
+    {
+      "type": "explain",
+      "heading": "Les pièces",
+      "narration": "En haut, la borne reçoit le courant de la bobine. Au milieu, la céramique blanche isole. En bas, le filetage se visse dans la culasse.",
+      "visual": { "kind": "sparkplug", "mode": "parts" }
+    },
+    {
+      "type": "explain",
+      "heading": "L'étincelle",
+      "narration": "Le courant descend par l'électrode centrale, puis il saute jusqu'à l'électrode de masse. Et ça fait une étincelle !",
+      "visual": { "kind": "sparkplug", "mode": "spark" }
+    },
+    {
+      "type": "explain",
+      "heading": "L'écartement",
+      "narration": "Entre les deux électrodes, il y a moins d'un millimètre. C'est l'écartement. Trop grand ou trop petit, l'étincelle est moins bonne.",
+      "visual": { "kind": "sparkplug", "mode": "gap" }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "Dans le cylindre, l'étincelle allume le mélange air-essence au bon moment. Pas d'étincelle, pas d'explosion, et ton moteur ne tourne pas.",
+      "visual": { "kind": "engine4t", "stroke": "combustion", "highlight": "spark" }
+    },
+    {
+      "type": "tip",
+      "heading": "Lis ta bougie",
+      "narration": "Moteur froid, dévisse la bougie et regarde le bout. Marron clair, c'est parfait. Noir ou tout blanc, fais vérifier. Et change-la au kilométrage de ton manuel.",
+      "visual": { "kind": "sparkcheck" }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi ! La prochaine fois, on décode la batterie.",
+    "next": "La batterie"
+  },
+  "description": "Jusqu'à 30 000 volts dans ta bougie ⚡\nBougie moto, comment ça marche : électrodes, étincelle, écartement, et l'entretien (lire la couleur, quand la changer) en 1 minute 🏍️\nTa bougie, elle est de quelle couleur ? Dis-le en commentaire 👇",
+  "hashtags": ["moto", "motard", "mecaniquemoto", "entretienmoto", "apprendresurtiktok"]
+}

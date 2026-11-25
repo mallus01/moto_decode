@@ -9,6 +9,8 @@ export type VisualSpec =
   | { kind: "brakepads" }
   | { kind: "tire"; mode?: "marking" | "water" | "lean" }
   | { kind: "tirecheck" }
+  | { kind: "sparkplug"; mode?: "parts" | "spark" | "gap" }
+  | { kind: "sparkcheck" }
   | { kind: "oilcheck" }
   | { kind: "mascot"; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }

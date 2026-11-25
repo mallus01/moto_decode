@@ -6,6 +6,7 @@ import { Clutch, ClutchLever } from "./Clutch";
 import { Chain, ChainLink } from "./Chain";
 import { Brake, BrakePads } from "./Brake";
 import { Tire, TireCheck } from "./Tire";
+import { SparkPlug, SparkCheck } from "./SparkPlug";
 import { Pistou } from "../components/Mascots";
 import { LogoMark } from "../components/Logo";
 
@@ -35,6 +36,10 @@ export const Visual: React.FC<{ spec?: VisualSpec }> = ({ spec }) => {
       return <Tire mode={s.mode} />;
     case "tirecheck":
       return <TireCheck />;
+    case "sparkplug":
+      return <SparkPlug mode={s.mode} />;
+    case "sparkcheck":
+      return <SparkCheck />;
     case "oilcheck":
       return <OilCheck />;
     case "mascot":
