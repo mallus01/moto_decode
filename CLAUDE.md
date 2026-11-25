@@ -32,7 +32,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
 
 ## 2. Les visuels
 Chaque scène a un `visual` dont `kind` est déclaré dans `src/visuals/index.tsx`.
-Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `mascot` (`id`, `pose`), `logo`.
+Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `chain` (transmission secondaire : `mode` parts | ratio | drive | slack), `chainlink` (zoom sur les maillons), `mascot` (`id`, `pose`), `logo`.
 Si le sujet en demande un nouveau (chaîne, frein, bougie, embrayage…), **crée-le** dans `src/visuals/<Nom>.tsx` :
 - SVG React, `viewBox="0 0 600 900"`, animé avec `useCurrentFrame()` (jamais de CSS animation ni `Math.random`).
 - Style cartoon : couleurs de `BRAND.colors`, contours `BRAND.stroke` (#14213D), formes simples et arrondies.

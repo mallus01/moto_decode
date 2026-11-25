@@ -3,6 +3,7 @@ import { Engine4T } from "./Engine4T";
 import { OilCheck } from "./OilCheck";
 import { MotoBike } from "./MotoBike";
 import { Clutch, ClutchLever } from "./Clutch";
+import { Chain, ChainLink } from "./Chain";
 import { PartMascot } from "../components/Mascots";
 import { LogoMark } from "../components/Logo";
 
@@ -20,6 +21,10 @@ export const Visual: React.FC<{ spec?: VisualSpec }> = ({ spec }) => {
       return <Clutch state={s.state} labels={s.labels} />;
     case "clutchlever":
       return <ClutchLever />;
+    case "chain":
+      return <Chain mode={s.mode} labels={s.labels} />;
+    case "chainlink":
+      return <ChainLink />;
     case "oilcheck":
       return <OilCheck />;
     case "mascot":

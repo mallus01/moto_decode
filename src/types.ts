@@ -5,6 +5,8 @@ export type VisualSpec =
   | { kind: "bike"; focus?: "engine" | "spark" | "brake" | "tire" | "chain" | "clutch" | "none"; boom?: boolean; label?: string }
   | { kind: "clutch"; state?: "engaged" | "disengaged" | "slip" | "cycle"; labels?: boolean }
   | { kind: "clutchlever" }
+  | { kind: "chain"; mode?: "parts" | "ratio" | "drive" | "slack"; labels?: boolean }
+  | { kind: "chainlink" }
   | { kind: "oilcheck" }
   | { kind: "mascot"; id?: MascotId; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }

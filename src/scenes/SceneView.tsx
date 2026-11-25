@@ -8,6 +8,7 @@ import { PartMascot, type MascotId } from "../components/Mascots";
 import { HookView } from "./HookView";
 import { Sfx } from "../components/Sfx";
 import { CLUTCH_CYCLE } from "../visuals/Clutch";
+import { CHAIN_FRONT_TURN } from "../visuals/Chain";
 
 const C = BRAND.colors;
 
@@ -31,6 +32,9 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
     : v.kind === "clutch" && v.state === "cycle" ? Array.from({ length: Math.ceil(speechFrames / CLUTCH_CYCLE) }, (_, i) => i * CLUTCH_CYCLE + 8)
     : [];
 
+  // Chaîne (rapport) : un tick à chaque tour de pignon, un pop à chaque tour de roue.
+  const chainTicks = v.kind === "chain" && v.mode === "ratio" ? Array.from({ length: Math.floor(speechFrames / CHAIN_FRONT_TURN) }, (_, i) => (i + 1) * CHAIN_FRONT_TURN) : [];
+
   return (
     <AbsoluteFill>
       {/* bruitages */}
@@ -41,6 +45,7 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number; mascot?: 
       {v.kind === "oilcheck" && <Sfx name="levelup" at={60} />}
       {clutchPops.map((z) => <Sfx key={`c${z}`} name="pop" at={z} />)}
       {v.kind === "clutchlever" && <Sfx name="levelup" at={42} />}
+      {chainTicks.map((z, i) => <Sfx key={`t${z}`} name={(i + 1) % 3 === 0 ? "pop" : "tick"} at={z} />)}
       {scene.heading && (
         <div style={{ position: "absolute", top: 330, left: 60, right: 60, display: "flex", justifyContent: "center", transform: `translateX(${headX}px)` }}>
           <div
