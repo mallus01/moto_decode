@@ -20,7 +20,7 @@ const parsePunch = (text: string) => {
 
 /**
  * Accroche : une phrase choc en très gros (mots qui tombent un par un, mot clé surligné)
- * + une grande image cartoon qui illustre le sujet, avec un petit tremblement d'impact.
+ * + une grande image flat qui illustre le sujet, avec un petit tremblement d'impact.
  */
 export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ scene, speechFrames }) => {
   const f = useCurrentFrame();
@@ -44,18 +44,16 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
               key={i}
               style={{
                 fontFamily: TITLE_FONT,
-                fontSize: 118,
+              fontWeight: 800,
+                fontSize: 100,
                 lineHeight: 1.05,
-                color: hot ? C.ink : C.white,
-                background: hot ? C.yellow : "transparent",
+                color: hot ? C.ink : C.text,
+                background: hot ? C.orange : "transparent",
                 padding: hot ? "0 18px 8px" : 0,
-                borderRadius: 18,
-                border: hot ? `${BRAND.stroke}px solid ${C.ink}` : "none",
-                WebkitTextStroke: hot ? undefined : `16px ${C.ink}`,
-                paintOrder: "stroke fill",
+                borderRadius: 14,
                 textTransform: "uppercase",
                 display: "inline-block",
-                transform: `scale(${s}) rotate(${hot ? -3 : 0}deg)`,
+                transform: `scale(${s}) rotate(0deg)`,
                 
               }}
             >
@@ -70,7 +68,7 @@ export const HookView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sce
       </div>
       {scene.kicker && (
         <div style={{ position: "absolute", top: 625, width: "100%", zIndex: 2, display: "flex", justifyContent: "center", transform: `scale(${kickerIn})` }}>
-          <div style={{ fontFamily: BODY_FONT, fontWeight: 900, fontSize: 44, color: C.white, background: C.orange, border: `6px solid ${C.ink}`, borderRadius: 40, padding: "6px 30px", boxShadow: `6px 6px 0 ${C.ink}` }}>
+          <div style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: 44, color: C.white, background: C.red, borderRadius: 40, padding: "8px 34px", letterSpacing: 3, textTransform: "uppercase" }}>
             {scene.kicker}
           </div>
         </div>

@@ -1,23 +1,19 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { BRAND } from "../brand";
 
-// Fond crème avec rayures diagonales qui défilent lentement (style BD).
-export const Background: React.FC<{ tint?: string }> = ({ tint = BRAND.colors.cream }) => {
-  const frame = useCurrentFrame();
-  const offset = (frame * 1.2) % 80;
+const C = BRAND.colors;
+
+// Fond flat : aplat bleu pétrole + deux grandes formes géométriques d'une teinte au-dessus,
+// qui dérivent lentement (pas de dégradé, pas de texture).
+export const Background: React.FC<{ tint?: string }> = ({ tint = C.bg }) => {
+  const f = useCurrentFrame();
+  const drift = Math.sin(f / 90) * 30;
   return (
     <AbsoluteFill style={{ backgroundColor: tint, overflow: "hidden" }}>
-      <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-        <defs>
-          <pattern id="stripes" width="80" height="80" patternUnits="userSpaceOnUse" patternTransform={`rotate(-30) translate(${offset} 0)`}>
-            <rect width="40" height="80" fill={BRAND.colors.orange} opacity={0.07} />
-          </pattern>
-          <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
-            <circle cx="18" cy="18" r="4" fill={BRAND.colors.ink} opacity={0.06} />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#stripes)" />
-        <rect width="100%" height="100%" fill="url(#dots)" />
+      <svg width="100%" height="100%" viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
+        <circle cx={540 + drift} cy={930} r={470} fill={C.deco} />
+        <circle cx={930 - drift} cy={420} r={110} fill={C.deco} />
+        <rect x={-60} y={1530 + drift * 0.5} width={520} height={60} rx={30} fill={C.deco} transform="rotate(-8 200 1560)" />
       </svg>
     </AbsoluteFill>
   );

@@ -2,33 +2,36 @@ import { AbsoluteFill } from "remotion";
 import { BRAND } from "./brand";
 import { BODY_FONT, TITLE_FONT } from "./fonts";
 import { Background } from "./components/Background";
-import { MASCOTS, PartMascot, type MascotId } from "./components/Mascots";
+import { MASCOT, Pistou, type Pose } from "./components/Mascots";
 
-// Planche de présentation des 5 mascottes (brand/mascottes.png).
-export const MascotSheet: React.FC = () => {
-  const ids = Object.keys(MASCOTS) as MascotId[];
-  return (
-    <AbsoluteFill>
-      <Background />
-      <div style={{ position: "absolute", top: 60, width: "100%", textAlign: "center", fontFamily: TITLE_FONT, fontSize: 90, color: BRAND.colors.ink }}>
-        La bande de <span style={{ color: BRAND.colors.orange }}>Moto Décode</span> <span style={{ fontSize: 50, color: BRAND.colors.ink }}>by {BRAND.author}</span>
-      </div>
-      <div style={{ position: "absolute", top: 220, left: 40, right: 40, display: "flex", justifyContent: "space-between" }}>
-        {ids.map((id) => (
-          <div key={id} style={{ width: 360, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <PartMascot id={id} size={330} pose="wave" talking={false} bob={false} />
-            <div style={{ fontFamily: TITLE_FONT, fontSize: 64, color: BRAND.colors.ink, marginTop: 30 }}>{MASCOTS[id].name}</div>
-            <div style={{ fontFamily: BODY_FONT, fontWeight: 900, fontSize: 34, color: BRAND.colors.ink, opacity: 0.7 }}>{MASCOTS[id].part}</div>
-          </div>
-        ))}
-      </div>
-    </AbsoluteFill>
-  );
-};
+const POSES: { pose: Pose; label: string }[] = [
+  { pose: "wave", label: "salue (accroche, outro)" },
+  { pose: "wrench", label: "clé en main (astuce)" },
+  { pose: "think", label: "réfléchit" },
+];
 
-// Une mascotte seule sur fond transparent (utilisée par l'outro HyperFrames).
-export const MascotStill: React.FC<{ id: MascotId }> = ({ id }) => (
+// Planche de présentation de Pistou (brand/mascottes.png).
+export const MascotSheet: React.FC = () => (
+  <AbsoluteFill>
+    <Background />
+    <div style={{ position: "absolute", top: 60, width: "100%", textAlign: "center", fontFamily: TITLE_FONT, fontWeight: 800, fontSize: 90, color: BRAND.colors.text }}>
+      {MASCOT.name}, la mascotte de <span style={{ color: BRAND.colors.orange }}>Moto Décode</span>{" "}
+      <span style={{ fontSize: 50 }}>by {BRAND.author}</span>
+    </div>
+    <div style={{ position: "absolute", top: 230, left: 160, right: 160, display: "flex", justifyContent: "space-between" }}>
+      {POSES.map(({ pose, label }) => (
+        <div key={pose} style={{ width: 440, display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <Pistou size={360} pose={pose} talking={false} bob={false} />
+          <div style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: 38, color: BRAND.colors.text, opacity: 0.8, marginTop: 30 }}>{label}</div>
+        </div>
+      ))}
+    </div>
+  </AbsoluteFill>
+);
+
+// Pistou seul sur fond transparent (utilisé par l'outro HyperFrames).
+export const MascotStill: React.FC = () => (
   <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-    <PartMascot id={id} size={520} pose="wave" talking={false} bob={false} />
+    <Pistou size={520} pose="wave" talking={false} bob={false} />
   </AbsoluteFill>
 );

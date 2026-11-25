@@ -4,7 +4,7 @@ import { OilCheck } from "./OilCheck";
 import { MotoBike } from "./MotoBike";
 import { Clutch, ClutchLever } from "./Clutch";
 import { Chain, ChainLink } from "./Chain";
-import { PartMascot } from "../components/Mascots";
+import { Pistou } from "../components/Mascots";
 import { LogoMark } from "../components/Logo";
 
 // Registre des visuels. Pour un nouveau sujet, ajoute un composant SVG ici
@@ -28,7 +28,7 @@ export const Visual: React.FC<{ spec?: VisualSpec }> = ({ spec }) => {
     case "oilcheck":
       return <OilCheck />;
     case "mascot":
-      return <PartMascot id={s.id} size={560} pose={s.pose} />;
+      return <Pistou size={560} pose={s.pose} />;
     case "logo":
       return <LogoMark size={600} />;
     default:

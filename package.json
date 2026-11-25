@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Pipeline: un sujet moto -> une vidéo TikTok verticale en français (cartoon, voix off, sous-titres).",
+  "description": "Pipeline: un sujet moto -> une vidéo TikTok verticale en français (flat design, voix off, sous-titres).",
   "scripts": {
     "studio": "remotion studio",
     "make": "node pipeline/make.mjs",

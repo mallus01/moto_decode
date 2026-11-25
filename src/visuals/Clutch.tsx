@@ -5,7 +5,7 @@ import { BODY_FONT, TITLE_FONT } from "../fonts";
 const C = BRAND.colors;
 const INK = C.ink;
 const S = BRAND.stroke;
-const GREEN = "#2BB673";
+const GREEN = C.green;
 const ENGINE_SPEED = 14; // degrés par image
 
 export type ClutchState = "engaged" | "disengaged" | "slip" | "cycle";
@@ -65,8 +65,6 @@ const Spinner: React.FC<{
           height={24}
           rx={6}
           fill={color}
-          stroke={INK}
-          strokeWidth={5}
           transform={`rotate(${i * 36} ${cx} ${cy})`}
         />
       ))}
@@ -75,16 +73,12 @@ const Spinner: React.FC<{
         cy={cy}
         r={74}
         fill={color}
-        stroke={INK}
-        strokeWidth={S}
       />
       <circle
         cx={cx}
         cy={cy}
         r={50}
         fill={C.cream}
-        stroke={INK}
-        strokeWidth={5}
       />
       <rect x={cx - 8} y={cy - 48} width={16} height={40} rx={6} fill={INK} />
       <circle cx={cx} cy={cy} r={14} fill={INK} />
@@ -96,14 +90,12 @@ const Spinner: React.FC<{
       height={48}
       rx={14}
       fill={C.white}
-      stroke={INK}
-      strokeWidth={5}
     />
     <text
       x={cx}
       y={cy + 135}
       textAnchor="middle"
-      fontFamily={TITLE_FONT}
+      fontFamily={TITLE_FONT} fontWeight={800}
       fontSize={32}
       fill={INK}
     >
@@ -121,7 +113,7 @@ const Tag: React.FC<{
   show: number;
 }> = ({ x, y, text, tx, ty, show }) => (
   <g opacity={show}>
-    <line x1={x} y1={y} x2={tx} y2={ty} stroke={INK} strokeWidth={4} />
+    <line x1={x} y1={y} x2={tx} y2={ty} stroke={C.text} strokeWidth={4} />
     <circle cx={tx} cy={ty} r={7} fill={INK} />
     <g transform={`translate(${x} ${y}) scale(${show})`}>
       <rect
@@ -131,13 +123,11 @@ const Tag: React.FC<{
         height={44}
         rx={12}
         fill={C.yellow}
-        stroke={INK}
-        strokeWidth={5}
       />
       <text
         y={9}
         textAnchor="middle"
-        fontFamily={TITLE_FONT}
+        fontFamily={TITLE_FONT} fontWeight={800}
         fontSize={28}
         fill={INK}
       >
@@ -220,7 +210,7 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
       <g opacity={0.25 + 0.75 * ratio}>
         <path
           d="M 240 130 L 340 130"
-          stroke={INK}
+          stroke={C.text}
           strokeWidth={14}
           strokeLinecap="round"
           strokeDasharray={ratio > 0.05 ? "1 26" : "0 999"}
@@ -229,7 +219,7 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
         <path
           d="M 335 100 L 365 130 L 335 160"
           fill="none"
-          stroke={INK}
+          stroke={C.text}
           strokeWidth={12}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -239,9 +229,9 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
         x={300}
         y={215}
         textAnchor="middle"
-        fontFamily={TITLE_FONT}
+        fontFamily={TITLE_FONT} fontWeight={800}
         fontSize={34}
-        fill={INK}
+        fill={C.text}
       >
         {Math.round(ratio * 100)} %
       </text>
@@ -256,8 +246,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={36}
           rx={14}
           fill={C.grey}
-          stroke={INK}
-          strokeWidth={6}
         />
         {/* noix (côté boîte) */}
         <rect
@@ -267,16 +255,11 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={124}
           rx={18}
           fill={C.sky}
-          stroke={INK}
-          strokeWidth={S}
         />
         {/* cloche (côté moteur) */}
         <path
           d={`M 140 ${CY - 190} L 370 ${CY - 190} L 370 ${CY - 168} L 140 ${CY - 168} Z M 140 ${CY + 168} L 370 ${CY + 168} L 370 ${CY + 190} L 140 ${CY + 190} Z`}
           fill={C.orange}
-          stroke={INK}
-          strokeWidth={6}
-          strokeLinejoin="round"
         />
         <rect
           x={112}
@@ -285,8 +268,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={380}
           rx={10}
           fill={C.orange}
-          stroke={INK}
-          strokeWidth={S}
         />
         {/* pignon primaire de la cloche, entraîné par le moteur */}
         <g transform={`rotate(${f * 6} 70 ${CY - 120})`}>
@@ -299,8 +280,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
               height={18}
               rx={4}
               fill={C.orange}
-              stroke={INK}
-              strokeWidth={4}
               transform={`rotate(${i * 45} 70 ${CY - 120})`}
             />
           ))}
@@ -309,8 +288,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
             cy={CY - 120}
             r={34}
             fill={C.orange}
-            stroke={INK}
-            strokeWidth={6}
           />
           <circle cx={70} cy={CY - 120} r={9} fill={INK} />
         </g>
@@ -359,8 +336,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
                     height={b - a}
                     rx={5}
                     fill={heat > 0.5 ? "#F28C28" : C.yellow}
-                    stroke={INK}
-                    strokeWidth={5}
                   />
                   {[0.25, 0.5, 0.75].map((t) => (
                     <line
@@ -386,8 +361,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
                 height={96}
                 rx={4}
                 fill={C.metal}
-                stroke={INK}
-                strokeWidth={5}
               />
               <rect
                 x={pl.x}
@@ -396,8 +369,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
                 height={96}
                 rx={4}
                 fill={C.metal}
-                stroke={INK}
-                strokeWidth={5}
               />
             </g>
           ),
@@ -410,8 +381,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={350}
           rx={8}
           fill={C.grey}
-          stroke={INK}
-          strokeWidth={S}
         />
         {[CY - 120, CY + 120].map((y) => (
           <path
@@ -431,8 +400,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={320}
           rx={8}
           fill={C.sky}
-          stroke={INK}
-          strokeWidth={6}
         />
         {/* tige de commande poussée par le levier */}
         <rect
@@ -442,8 +409,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
           height={18}
           rx={8}
           fill={C.white}
-          stroke={INK}
-          strokeWidth={4}
         />
         {pp > 0.2 && (
           <path d={`M ${ppX + 40} ${CY + 45} l 50 0 m -16 -16 l 16 16 l -16 16`} fill="none" stroke={C.red} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={pp} />
@@ -472,8 +437,6 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
               height={68}
               rx={10}
               fill={C.grey}
-              stroke={INK}
-              strokeWidth={5}
             />
             <g
               transform={`rotate(${interpolate(pp, [0, 1], [0, -14])} 175 70)`}
@@ -498,9 +461,9 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
               y={160}
               textAnchor="middle"
               fontFamily={BODY_FONT}
-              fontWeight={900}
+              fontWeight={800}
               fontSize={28}
-              fill={INK}
+              fill={C.text}
             >
               LEVIER
             </text>
@@ -513,13 +476,11 @@ export const Clutch: React.FC<{ state?: ClutchState; labels?: boolean }> = ({
               height={92}
               rx={22}
               fill={status.c}
-              stroke={INK}
-              strokeWidth={S}
             />
             <text
               y={18}
               textAnchor="middle"
-              fontFamily={TITLE_FONT}
+              fontFamily={TITLE_FONT} fontWeight={800}
               fontSize={50}
               fill={status.c === C.yellow ? INK : C.white}
             >
@@ -559,8 +520,6 @@ export const ClutchLever: React.FC = () => {
         height={70}
         rx={32}
         fill={C.grey}
-        stroke={INK}
-        strokeWidth={S}
       />
       <rect x={20} y={290} width={250} height={90} rx={40} fill={INK} />
       {[60, 100, 140, 180, 220].map((x) => (
@@ -583,8 +542,6 @@ export const ClutchLever: React.FC = () => {
         height={130}
         rx={20}
         fill={C.metal}
-        stroke={INK}
-        strokeWidth={S}
       />
       <g transform={`rotate(${f * 4} 470 300)`}>
         <circle
@@ -592,8 +549,6 @@ export const ClutchLever: React.FC = () => {
           cy={300}
           r={36}
           fill={C.orange}
-          stroke={INK}
-          strokeWidth={6}
         />
         {[0, 60, 120].map((a) => (
           <rect
@@ -613,9 +568,9 @@ export const ClutchLever: React.FC = () => {
         y={240}
         textAnchor="middle"
         fontFamily={BODY_FONT}
-        fontWeight={900}
+        fontWeight={800}
         fontSize={28}
-        fill={INK}
+        fill={C.text}
       >
         MOLETTE
       </text>
@@ -623,7 +578,7 @@ export const ClutchLever: React.FC = () => {
       <path
         d="M 420 360 Q 520 420 560 560"
         fill="none"
-        stroke={INK}
+        stroke={C.text}
         strokeWidth={12}
         strokeLinecap="round"
       />
@@ -648,8 +603,6 @@ export const ClutchLever: React.FC = () => {
           cy={400}
           r={20}
           fill={C.grey}
-          stroke={INK}
-          strokeWidth={6}
         />
       </g>
       {/* zone de garde */}
@@ -676,14 +629,12 @@ export const ClutchLever: React.FC = () => {
           height={72}
           rx={18}
           fill={C.yellow}
-          stroke={INK}
-          strokeWidth={6}
         />
         <text
           x={170}
           y={44}
           textAnchor="middle"
-          fontFamily={TITLE_FONT}
+          fontFamily={TITLE_FONT} fontWeight={800}
           fontSize={44}
           fill={INK}
         >
@@ -695,14 +646,14 @@ export const ClutchLever: React.FC = () => {
         y={720}
         textAnchor="middle"
         fontFamily={BODY_FONT}
-        fontWeight={900}
+        fontWeight={800}
         fontSize={34}
-        fill={INK}
+        fill={C.text}
       >
         Valeur : voir ton manuel
       </text>
       <g transform={`translate(470 600) scale(${ok})`}>
-        <circle r={52} fill={GREEN} stroke={INK} strokeWidth={S} />
+        <circle r={52} fill={GREEN} />
         <path
           d="M -24 0 L -6 18 L 26 -16"
           fill="none"

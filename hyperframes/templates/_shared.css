@@ -1,16 +1,19 @@
-@font-face { font-family: "Lilita One"; src: url("fonts/LilitaOne.woff2") format("woff2"); }
-@font-face { font-family: "Nunito"; font-weight: 900; src: url("fonts/Nunito-Black.woff2") format("woff2"); }
-:root { --ink:#14213D; --orange:#FF6B1A; --yellow:#FFC93C; --cream:#FFF4E0; --metal:#C9D1DC; --red:#E63946; }
+/* Charte flat « Huile & acier » : garder synchro avec src/brand.ts */
+@font-face { font-family: "Rubik"; font-weight: 300 900; src: url("fonts/Rubik.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 100 900; src: url("fonts/Inter.woff2") format("woff2"); }
+:root { --bg:#0F2A3D; --deco:#16384F; --text:#EEF2F4; --ink:#071824; --orange:#F2A20C; --yellow:#FFD166;
+  --blue:#3E7CA6; --blue-dk:#2F6185; --metal:#A9B8C6; --red:#E4572E; }
 * { margin:0; padding:0; box-sizing:border-box; }
-html, body { width:1080px; height:1920px; overflow:hidden; background:var(--cream); }
-#root { position:relative; width:1080px; height:1920px; overflow:hidden;
-  background: repeating-linear-gradient(-30deg, rgba(255,107,26,.08) 0 40px, transparent 40px 80px), var(--cream); }
-.clip { position:absolute; inset:0; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--bg); }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--bg); }
+#root::before { content:""; position:absolute; left:70px; top:430px; width:940px; height:940px; border-radius:50%; background:var(--deco); }
+#root::after { content:""; position:absolute; right:40px; top:200px; width:220px; height:220px; border-radius:50%; background:var(--deco); }
+.clip { position:absolute; inset:0; z-index:1; }
 .center { display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.wordmark { font-family:"Lilita One"; font-size:150px; line-height:.9; color:var(--ink); text-align:center; }
-.wordmark .o { color:var(--orange); -webkit-text-stroke:8px var(--ink); paint-order:stroke fill; }
-.by { font-family:"Nunito"; font-weight:900; font-size:52px; color:#fff; background:var(--ink); border-radius:50px;
-  padding:4px 30px 10px; margin-top:18px; transform:rotate(-4deg); }
-.by span { color:var(--yellow); }
-.chip { font-family:"Nunito"; font-weight:900; font-size:52px; color:#fff; background:var(--ink);
+.wordmark { font-family:"Rubik"; font-weight:800; font-size:140px; line-height:.9; color:var(--text); text-align:center; }
+.wordmark .o { color:var(--orange); }
+.by { font-family:"Inter"; font-weight:800; font-size:48px; color:var(--text); background:var(--deco); border-radius:50px;
+  padding:6px 30px 10px; margin-top:22px; }
+.by span { color:var(--orange); }
+.chip { font-family:"Inter"; font-weight:800; font-size:48px; color:var(--bg); background:var(--text);
   border-radius:40px; padding:14px 40px; margin-top:50px; }

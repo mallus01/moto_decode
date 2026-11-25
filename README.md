@@ -1,12 +1,12 @@
 # Moto Décode 🏍️
 
 Pipeline qui transforme **un sujet moto** en **vidéo TikTok verticale** (1080×1920, ~1 min, en français) :
-cartoon dessiné en code, voix off, sous-titres animés, intro et outro de marque.
+flat design dessiné en code, voix off, sous-titres animés, intro et outro de marque.
 
 ```
 sujet ──► Claude écrit content/<slug>/script.json
       ──► voix off (Piper provisoire, ou TA voix clonée avec Chatterbox)
-      ──► vidéo principale avec Remotion (scènes cartoon React/SVG)
+      ──► vidéo principale avec Remotion (scènes flat React/SVG)
       ──► outro avec HyperFrames (HTML + GSAP) ; la vidéo démarre direct sur l'accroche
       ──► ffmpeg assemble tout ──► out/<slug>.mp4
 ```
@@ -48,7 +48,7 @@ Une carte graphique NVIDIA est fortement conseillée.
 | Dossier | Rôle |
 |---|---|
 | `content/<slug>/script.json` | Le script d'un épisode (texte, scènes, visuels) |
-| `src/` | Projet Remotion : scènes, sous-titres, visuels cartoon (`src/visuals/`) |
+| `src/` | Projet Remotion : scènes, sous-titres, visuels flat (`src/visuals/`) |
 | `hyperframes/templates/` | Intro et outro HyperFrames |
 | `pipeline/` | `make.mjs` (orchestration), `voice.py` (voix off) |
 | `brand/` | Charte : nom, couleurs, logo, mascotte |
@@ -58,4 +58,4 @@ Une carte graphique NVIDIA est fortement conseillée.
 
 - **Remotion** : gratuit pour un particulier ou une entreprise de 3 personnes max.
 - **HyperFrames** : Apache-2.0. **Chatterbox** : MIT. Voix Piper « tom » : AGPLv3 (modèle provisoire).
-- Polices Lilita One et Nunito : OFL.
+- Polices Rubik et Inter : OFL.
