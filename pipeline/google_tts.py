@@ -15,16 +15,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 API = "https://texttospeech.googleapis.com/v1"
-DEFAULT_VOICE = "fr-FR-Chirp3-HD-Charon"
+DEFAULT_VOICE = "fr-FR-Chirp3-HD-Enceladus"
 
 
 def api_key() -> str:
     key = os.environ.get("GOOGLE_TTS_API_KEY", "").strip()
-    f = ROOT / "voices" / "google-key.txt"
-    if not key and f.exists():
-        key = f.read_text(encoding="utf-8").strip()
+    # google-key.txt.txt : le Bloc-notes de Windows ajoute souvent .txt sans le montrer
+    for name in ("google-key.txt", "google-key.txt.txt", "google-key"):
+        f = ROOT / "voices" / name
+        if not key and f.exists():
+            key = f.read_text(encoding="utf-8-sig").strip().strip('"')
     if not key:
-        sys.exit("Clé Google introuvable. Mets-la dans voices/google-key.txt (voir docs/TUTO-GOOGLE-TTS.md).")
+        sys.exit(f"Clé Google introuvable dans {ROOT / 'voices'}. Crée le fichier google-key.txt avec ta clé dedans (voir docs/TUTO-GOOGLE-TTS.md).")
     return key
 
 
