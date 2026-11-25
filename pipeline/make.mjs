@@ -47,7 +47,7 @@ if (!fs.existsSync(path.join(ROOT, "public", "sfx", "boom.wav"))) run(PY, [path.
 console.log(`\n== 1/4 Voix off (${engine}) ==`);
 const texts = [...script.scenes.map((s) => s.narration), script.outro?.narration].filter(Boolean);
 // L'échantillon et les réglages font partie de la clé : en changer régénère la voix automatiquement.
-const voiceSettings = ["MOTO_VOICE_REF", "MOTO_VOICE_EXAGGERATION", "MOTO_VOICE_CFG", "MOTO_VOICE_TEMP", "MOTO_VOICE_TEMPO", "MOTO_VOICE_PRESET", "MOTO_VOICE_POLISH", "MOTO_VOICE_PAUSE", "MOTO_VOICE_SEED", "MOTO_PIPER_SPEED"]
+const voiceSettings = ["MOTO_VOICE_REF", "MOTO_VOICE_EXAGGERATION", "MOTO_VOICE_CFG", "MOTO_VOICE_TEMP", "MOTO_VOICE_TEMPO", "MOTO_VOICE_PRESET", "MOTO_VOICE_POLISH", "MOTO_VOICE_PAUSE", "MOTO_VOICE_SEED", "MOTO_PIPER_SPEED", "MOTO_GOOGLE_VOICE", "MOTO_GOOGLE_RATE"]
   .map((k) => `${k}=${process.env[k] ?? ""}`).join(";");
 // Échantillon utilisé par défaut (même ordre que voice.py) : sa date de modification fait partie de la clé.
 const refFile = process.env.MOTO_VOICE_REF || ["mattis2.wav", "mattis.wav"].map((n) => path.join(ROOT, "voices", n)).find((f) => fs.existsSync(f)) || "";

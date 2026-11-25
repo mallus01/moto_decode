@@ -4,6 +4,11 @@
 `python pipeline/setup_voice.py` télécharge `fr_FR-tom-medium` dans `voices/piper/`. Rapide, CPU, gratuite.
 Vitesse réglable : `MOTO_PIPER_SPEED=0.88` (plus petit = plus rapide).
 
+## Voix Google (Cloud Text-to-Speech, offre gratuite mensuelle)
+Voix très naturelles (Chirp 3 HD), 1 million de caractères gratuits par mois (~1 000 vidéos).
+👉 Installation et choix de la voix : [`docs/TUTO-GOOGLE-TTS.md`](../docs/TUTO-GOOGLE-TTS.md).
+Clé dans `voices/google-key.txt` (jamais versionné), puis `npm run make -- <slug> --voice google`.
+
 ## Ta voix clonée (Chatterbox Multilingual, MIT, 100 % local)
 
 👉 Tuto complet pas à pas pour Windows : [`docs/TUTO-CHATTERBOX.md`](../docs/TUTO-CHATTERBOX.md)

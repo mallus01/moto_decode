@@ -1,13 +1,14 @@
 """Génère la voix off française.
 
 Usage : python pipeline/voice.py jobs.json
-jobs.json = {"engine": "piper" | "clone", "jobs": [{"text": "...", "out": "chemin.wav"}]}
+jobs.json = {"engine": "piper" | "clone" | "google", "jobs": [{"text": "...", "out": "chemin.wav"}]}
 
 Moteurs :
 - piper : voix française gratuite, rapide, tourne sur CPU. Sert de voix "provisoire".
 - clone : Chatterbox Multilingual (Resemble AI, licence MIT), clonage zéro-shot
           à partir de voices/mattis.wav. Gratuit, local ; un GPU NVIDIA est
           fortement conseillé (CPU possible mais lent).
+- google : Google Cloud Text-to-Speech (offre gratuite mensuelle, clé API) : voir docs/TUTO-GOOGLE-TTS.md.
 """
 import json
 import os
@@ -144,6 +145,20 @@ def run_clone(jobs):
         print(f"  voix (clone) -> {out.name}", flush=True)
 
 
+def run_google(jobs):
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from google_tts import DEFAULT_VOICE, synthesize
+
+    voice = os.environ.get("MOTO_GOOGLE_VOICE", DEFAULT_VOICE)
+    rate = float(os.environ.get("MOTO_GOOGLE_RATE", "1.1"))  # un peu plus rapide = plus dynamique
+    total = sum(len(j["text"]) for j in jobs)
+    print(f"  voix Google : {voice} (vitesse {rate}), {total} caractères", flush=True)
+    for job in jobs:
+        out = Path(job["out"])
+        synthesize(job["text"], out, voice, rate)
+        print(f"  voix (google) -> {out.name}", flush=True)
+
+
 def main():
     spec = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     engine = spec.get("engine", "piper")
@@ -151,6 +166,8 @@ def main():
         run_piper(spec["jobs"])
     elif engine == "clone":
         run_clone(spec["jobs"])
+    elif engine == "google":
+        run_google(spec["jobs"])
     else:
         sys.exit(f"Moteur inconnu : {engine}")
 
