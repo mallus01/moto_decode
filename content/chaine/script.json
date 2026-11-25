@@ -1,0 +1,74 @@
+{
+  "slug": "chaine",
+  "title": "Épisode 3 · La chaîne",
+  "mascot": "pignon",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "*+100 maillons* tirent ta moto !",
+      "kicker": "La chaîne",
+      "narration": "Plus de cent maillons d'acier tirent ta moto à chaque seconde ! On décode la chaîne.",
+      "visual": {
+        "kind": "bike",
+        "focus": "chain",
+        "label": "CHAÎNE"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Les pièces",
+      "narration": "Devant, un petit pignon en sortie de boîte. Derrière, une grande couronne vissée sur la roue. Entre les deux, la chaîne.",
+      "visual": {
+        "kind": "chain",
+        "mode": "parts"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Un maillon",
+      "narration": "Chaque maillon, c'est deux plaques, un axe et un rouleau. Sur la plupart des chaînes, des petits joints toriques gardent la graisse à l'intérieur.",
+      "visual": {
+        "kind": "chainlink"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Le rapport",
+      "narration": "Quinze dents devant, quarante-cinq derrière : le pignon fait trois tours pour un tour de roue. La roue tourne moins vite, mais avec plus de force.",
+      "visual": {
+        "kind": "chain",
+        "mode": "ratio"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "La chaîne, c'est le dernier maillon de la transmission : elle amène la force de la boîte jusqu'à la roue arrière.",
+      "visual": {
+        "kind": "chain",
+        "mode": "drive"
+      }
+    },
+    {
+      "type": "tip",
+      "heading": "Graisse et tension",
+      "narration": "Graisse ta chaîne tous les cinq cents à mille kilomètres, et après la pluie, moteur coupé. Vérifie aussi sa flèche au milieu, selon ton manuel. Trop tendue ou trop lâche, elle s'use vite.",
+      "visual": {
+        "kind": "chain",
+        "mode": "slack"
+      }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi ! La prochaine fois, on décode les freins.",
+    "next": "Les freins"
+  },
+  "description": "Plus de 100 maillons tirent ta moto 🤯\nChaîne moto, comment ça marche : pignon, couronne, rapport, et l'entretien (graissage et tension) en 1 minute 🏍️\nTu graisses ta chaîne tous les combien ? Dis-le en commentaire 👇",
+  "hashtags": [
+    "moto",
+    "motard",
+    "chainemoto",
+    "entretienmoto",
+    "apprendresurtiktok"
+  ]
+}
