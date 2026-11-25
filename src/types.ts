@@ -1,5 +1,3 @@
-import type { MascotId } from "./components/Mascots";
-
 export type VisualSpec =
   | { kind: "engine4t"; stroke?: "admission" | "compression" | "combustion" | "echappement" | "cycle"; speed?: number; highlight?: "crank" | "valves" | "spark" }
   | { kind: "bike"; focus?: "engine" | "spark" | "brake" | "tire" | "chain" | "clutch" | "none"; boom?: boolean; label?: string }
@@ -8,7 +6,7 @@ export type VisualSpec =
   | { kind: "chain"; mode?: "parts" | "ratio" | "drive" | "slack"; labels?: boolean }
   | { kind: "chainlink" }
   | { kind: "oilcheck" }
-  | { kind: "mascot"; id?: MascotId; pose?: "wave" | "wrench" | "think" }
+  | { kind: "mascot"; pose?: "wave" | "wrench" | "think" }
   | { kind: "logo" }
   | { kind: string; [key: string]: unknown };
 
@@ -28,8 +26,6 @@ export type Scene = {
 export type VideoProps = {
   slug: string;
   title: string;
-  // Mascotte de l'épisode (voir src/components/Mascots.tsx). Défaut : "piston".
-  mascot?: MascotId;
   scenes: Scene[];
   outro?: { narration: string; next?: string };
 };

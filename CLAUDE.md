@@ -7,9 +7,7 @@ Quand l'utilisateur donne un sujet (« fais une vidéo sur la chaîne »), fais 
 Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : voir `content/moteur-4-temps/script.json` et `src/types.ts`.
 
 - `title` : `"Épisode N · <Sujet>"` (regarde les épisodes existants pour N).
-- `mascot` : la mascotte de l'épisode, celle dont la pièce est la plus proche du sujet (`src/components/Mascots.tsx`) :
-  `piston` (Pistou : moteur, huile, embrayage…), `bougie` (Zap : allumage, électricité, batterie), `pneu` (Gomme : pneus, roues, suspension),
-  `frein` (Disco : freinage, ABS), `pignon` (Maillon : transmission, chaîne, boîte). Défaut : `piston`.
+- Mascotte : **Pistou le piston est la seule mascotte**, dans tous les épisodes (`src/components/Mascots.tsx`). Pas de champ `mascot` dans le script.
 - `scenes` : 6 à 8 scènes, dans cet ordre :
   1. `hook` (1) : l'accroche, les 3 premières secondes décident si on regarde. Elle a :
      - `heading` : **une phrase choc** de 3 à 6 mots, un chiffre ou une surprise vraie, mots clés entre `*` (surlignés en ambre).
@@ -32,7 +30,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
 
 ## 2. Les visuels
 Chaque scène a un `visual` dont `kind` est déclaré dans `src/visuals/index.tsx`.
-Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `chain` (transmission secondaire : `mode` parts | ratio | drive | slack), `chainlink` (zoom sur les maillons), `mascot` (`id`, `pose`), `logo`.
+Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `chain` (transmission secondaire : `mode` parts | ratio | drive | slack), `chainlink` (zoom sur les maillons), `mascot` (Pistou, `pose` wave | wrench | think), `logo`.
 Si le sujet en demande un nouveau (chaîne, frein, bougie, embrayage…), **crée-le** dans `src/visuals/<Nom>.tsx` :
 - SVG React, `viewBox="0 0 600 900"`, animé avec `useCurrentFrame()` (jamais de CSS animation ni `Math.random`).
 - Style **flat design** (palette « Huile & acier », voir `brand/BRAND.md`) : aplats de `BRAND.colors`, **pas de contour** ni de dégradé,
@@ -52,8 +50,8 @@ Livre `out/<slug>.mp4`. Pas de publication automatique.
 ## Règles
 - Pas d'intro : la vidéo démarre directement sur l'accroche (le logo d'intro HyperFrames n'est ajouté qu'avec `--intro`, à éviter).
 - Intro/outro : `hyperframes/templates/*.html` (HyperFrames). Variables `{{TITLE}}`, `{{NEXT}}`, `{{DUR}}`, `{{VO_DUR}}` remplies par `pipeline/make.mjs`.
-  L'outro affiche `mascot.png`, la mascotte de l'épisode rendue par la composition Remotion `MascotStill`.
-- Planche des mascottes : `npx remotion still src/index.ts MascotSheet brand/mascottes.png`.
+  L'outro affiche `mascot.png`, Pistou rendu par la composition Remotion `MascotStill`.
+- Planche de Pistou : `npx remotion still src/index.ts MascotSheet brand/mascottes.png`.
 - Les couleurs et polices ne changent que dans `src/brand.ts` + `hyperframes/templates/_shared.css` (garde-les synchronisés).
 - Bruitages : composant `<Sfx name="…" at={image} />` (`src/components/Sfx.tsx`), sons dans `public/sfx/` (régénérer : `python pipeline/make_sfx.py`).
   Déjà placés automatiquement : boom + pop dans l'accroche, whoosh à chaque scène, ding dans l'astuce, zap sur la combustion, levelup sur `oilcheck`.

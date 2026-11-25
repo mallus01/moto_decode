@@ -101,11 +101,9 @@ const outroItem = items.find((i) => i.name === "outro");
 const outroVo = outroItem ? probe(outroItem.wav) : 0;
 const outroDur = Math.max(3, +(outroVo + 0.9).toFixed(2));
 if (outroItem) fs.copyFileSync(outroItem.wav, path.join(hfDir, "outro.wav"));
-// Mascotte de l'épisode rendue en PNG transparent par Remotion, réutilisée dans l'outro.
-const mascotProps = path.join(gen, "mascot-props.json");
-fs.writeFileSync(mascotProps, JSON.stringify({ id: script.mascot ?? "piston" }));
+// Pistou rendu en PNG transparent par Remotion, réutilisée dans l'outro.
 run("npx", ["remotion", "still", "src/index.ts", "MascotStill", path.join(hfDir, "mascot.png"), "--image-format=png",
-  `--props=${mascotProps}`, ...(BROWSER ? [`--browser-executable=${BROWSER}`] : [])]);
+  ...(BROWSER ? [`--browser-executable=${BROWSER}`] : [])]);
 const read = (n) => fs.readFileSync(path.join(ROOT, "hyperframes", "templates", n), "utf-8");
 const hf = path.join(ROOT, "node_modules", ".bin", "hyperframes");
 const AUTHOR = esc(script.author ?? "Fazerr");

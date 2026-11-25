@@ -181,7 +181,7 @@ setx MOTO_VOICE clone
 
 Ouvre Claude Code dans le dossier `moto_decode` et demande simplement :
 « Fais une vidéo sur les plaquettes de frein, avec ma voix clonée ».
-Claude écrit le script, choisit la mascotte (Pistou, Zap, Gomme, Disco ou Maillon), dessine ce qui manque et lance le rendu.
+Claude écrit le script, dessine ce qui manque et lance le rendu.
 
 ---
 
