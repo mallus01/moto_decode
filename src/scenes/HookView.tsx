@@ -9,11 +9,12 @@ import { Sfx } from "../components/Sfx";
 const C = BRAND.colors;
 
 // Découpe "*50 explosions* par seconde !" en mots, ceux entre * sont mis en valeur.
+// Une espace insécable (\u00a0) garde deux mots ensemble, ex. "30\u00a0000".
 const parsePunch = (text: string) => {
   const words: { w: string; hot: boolean }[] = [];
   text.split(/(\*[^*]+\*)/).forEach((part) => {
     const hot = part.startsWith("*") && part.endsWith("*");
-    part.replace(/\*/g, "").split(/\s+/).filter(Boolean).forEach((w) => words.push({ w, hot }));
+    part.replace(/\*/g, "").split(/[ \t\n]+/).filter(Boolean).forEach((w) => words.push({ w, hot }));
   });
   return words;
 };

@@ -11,6 +11,7 @@ import { CLUTCH_CYCLE } from "../visuals/Clutch";
 import { CHAIN_FRONT_TURN } from "../visuals/Chain";
 import { BRAKE_CYCLE } from "../visuals/Brake";
 import { TIRE_MARK_STEP } from "../visuals/Tire";
+import { CHECK_AT, PART_STEP, SPARK_AT, SPARK_CYCLE } from "../visuals/SparkPlug";
 
 const C = BRAND.colors;
 
@@ -40,6 +41,9 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sc
   // Freins : un « pop » à chaque coup de frein.
   const brakePops = v.kind === "brake" && v.mode === "squeeze" ? Array.from({ length: Math.ceil(speechFrames / BRAKE_CYCLE) }, (_, i) => i * BRAKE_CYCLE + 6) : [];
 
+  // Bougie : un « zap » à chaque étincelle.
+  const sparkZaps = v.kind === "sparkplug" && v.mode === "spark" ? Array.from({ length: Math.ceil(speechFrames / SPARK_CYCLE) }, (_, i) => i * SPARK_CYCLE + SPARK_AT) : [];
+
   return (
     <AbsoluteFill>
       {/* bruitages */}
@@ -55,6 +59,10 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sc
       {v.kind === "brakepads" && <Sfx name="levelup" at={60} />}
       {v.kind === "tire" && v.mode === "marking" && [0, 1, 2].map((i) => <Sfx key={`m${i}`} name="pop" at={20 + i * TIRE_MARK_STEP} />)}
       {v.kind === "tirecheck" && <Sfx name="levelup" at={45} />}
+      {v.kind === "sparkplug" && v.mode === "parts" && [0, 1, 2, 3].map((i) => <Sfx key={`p${i}`} name="pop" at={10 + i * PART_STEP} />)}
+      {sparkZaps.map((z) => <Sfx key={`s${z}`} name="zap" at={z} />)}
+      {v.kind === "sparkplug" && v.mode === "gap" && <Sfx name="pop" at={45} />}
+      {v.kind === "sparkcheck" && <Sfx name="levelup" at={CHECK_AT[0]} />}
       {chainTicks.map((z, i) => <Sfx key={`t${z}`} name={(i + 1) % 3 === 0 ? "pop" : "tick"} at={z} />)}
       {scene.heading && (
         <div style={{ position: "absolute", top: 330, left: 60, right: 60, display: "flex", justifyContent: "center", transform: `translateX(${headX}px)` }}>
