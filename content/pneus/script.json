@@ -1,0 +1,74 @@
+{
+  "slug": "pneus",
+  "title": "Épisode 5 · Les pneus",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "Sur *2 cartes bancaires* !",
+      "kicker": "Les pneus",
+      "narration": "Ta moto touche la route sur deux petites zones, chacune grande comme une carte bancaire ! On décode les pneus.",
+      "visual": {
+        "kind": "bike",
+        "focus": "tire",
+        "label": "PNEUS"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Le marquage",
+      "narration": "Sur le flanc, cent quatre-vingts, cinquante-cinq, dix-sept : la largeur en millimètres, la hauteur du flanc en pourcentage, et la jante en pouces.",
+      "visual": {
+        "kind": "tire",
+        "mode": "marking"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Les rainures",
+      "narration": "Sous la pluie, les rainures chassent l'eau sur les côtés, pour que la gomme reste collée à la route.",
+      "visual": {
+        "kind": "tire",
+        "mode": "water"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Le profil rond",
+      "narration": "Un pneu moto est tout rond. Quand tu penches, tu roules sur son flanc, et il garde la même surface au sol.",
+      "visual": {
+        "kind": "tire",
+        "mode": "lean"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "Accélérer, freiner, tourner : toute la force passe par ces deux petites zones. Et une gomme froide accroche moins, alors vas-y doucement au début.",
+      "visual": {
+        "kind": "bike",
+        "focus": "tire",
+        "label": "ADHÉRENCE"
+      }
+    },
+    {
+      "type": "tip",
+      "heading": "Pression et usure",
+      "narration": "Vérifie la pression à froid, au moins tous les quinze jours, avec la valeur de ton manuel. Et quand les sculptures arrivent au témoin d'usure, change le pneu.",
+      "visual": {
+        "kind": "tirecheck"
+      }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi ! La prochaine fois, on décode la bougie.",
+    "next": "La bougie"
+  },
+  "description": "Ta moto tient sur 2 cartes bancaires 🤯\nPneus moto, comment ça marche : marquage 180/55 ZR17, rainures, profil rond, et l'entretien (pression et témoin d'usure) en 1 minute 🏍️\nTu vérifies ta pression tous les combien ? Dis-le en commentaire 👇",
+  "hashtags": [
+    "moto",
+    "motard",
+    "pneumoto",
+    "entretienmoto",
+    "apprendresurtiktok"
+  ]
+}

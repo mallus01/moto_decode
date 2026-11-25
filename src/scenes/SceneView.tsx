@@ -10,6 +10,7 @@ import { Sfx } from "../components/Sfx";
 import { CLUTCH_CYCLE } from "../visuals/Clutch";
 import { CHAIN_FRONT_TURN } from "../visuals/Chain";
 import { BRAKE_CYCLE } from "../visuals/Brake";
+import { TIRE_MARK_STEP } from "../visuals/Tire";
 
 const C = BRAND.colors;
 
@@ -52,6 +53,8 @@ export const SceneView: React.FC<{ scene: Scene; speechFrames: number }> = ({ sc
       {brakePops.map((z) => <Sfx key={`b${z}`} name="pop" at={z} />)}
       {v.kind === "brake" && v.mode === "heat" && <Sfx name="zap" at={20} />}
       {v.kind === "brakepads" && <Sfx name="levelup" at={60} />}
+      {v.kind === "tire" && v.mode === "marking" && [0, 1, 2].map((i) => <Sfx key={`m${i}`} name="pop" at={20 + i * TIRE_MARK_STEP} />)}
+      {v.kind === "tirecheck" && <Sfx name="levelup" at={45} />}
       {chainTicks.map((z, i) => <Sfx key={`t${z}`} name={(i + 1) % 3 === 0 ? "pop" : "tick"} at={z} />)}
       {scene.heading && (
         <div style={{ position: "absolute", top: 330, left: 60, right: 60, display: "flex", justifyContent: "center", transform: `translateX(${headX}px)` }}>
