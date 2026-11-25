@@ -47,13 +47,16 @@ if (!fs.existsSync(path.join(ROOT, "public", "sfx", "boom.wav"))) run(PY, [path.
 console.log(`\n== 1/4 Voix off (${engine}) ==`);
 const texts = [...script.scenes.map((s) => s.narration), script.outro?.narration].filter(Boolean);
 // L'échantillon et les réglages font partie de la clé : en changer régénère la voix automatiquement.
-const voiceSettings = ["MOTO_VOICE_REF", "MOTO_VOICE_EXAGGERATION", "MOTO_VOICE_CFG", "MOTO_VOICE_TEMP", "MOTO_VOICE_TEMPO", "MOTO_PIPER_SPEED"]
+const voiceSettings = ["MOTO_VOICE_REF", "MOTO_VOICE_EXAGGERATION", "MOTO_VOICE_CFG", "MOTO_VOICE_TEMP", "MOTO_VOICE_TEMPO", "MOTO_VOICE_PRESET", "MOTO_VOICE_POLISH", "MOTO_VOICE_PAUSE", "MOTO_VOICE_SEED", "MOTO_PIPER_SPEED"]
   .map((k) => `${k}=${process.env[k] ?? ""}`).join(";");
+// Échantillon utilisé par défaut (même ordre que voice.py) : sa date de modification fait partie de la clé.
+const refFile = process.env.MOTO_VOICE_REF || ["mattis2.wav", "mattis.wav"].map((n) => path.join(ROOT, "voices", n)).find((f) => fs.existsSync(f)) || "";
+const refStamp = refFile && fs.existsSync(refFile) ? `${path.basename(refFile)}@${fs.statSync(refFile).mtimeMs}` : "";
 const cacheFile = path.join(gen, "voice", "cache.json");
 const cache = fs.existsSync(cacheFile) ? JSON.parse(fs.readFileSync(cacheFile, "utf-8")) : {};
 const items = texts.map((text, i) => {
   const name = i < script.scenes.length ? `scene-${String(i + 1).padStart(2, "0")}` : "outro";
-  const key = createHash("sha1").update(`${engine}|${voiceSettings}|${text}`).digest("hex");
+  const key = createHash("sha1").update(`v2|${engine}|${engine === "clone" ? refStamp : ""}|${voiceSettings}|${text}`).digest("hex");
   return { text, name, key, raw: path.join(gen, "voice", `${name}.raw.wav`), wav: path.join(gen, "voice", `${name}.wav`) };
 });
 const todo = items.filter((it) => flag("force-voice") || cache[it.name] !== it.key || !fs.existsSync(it.wav));

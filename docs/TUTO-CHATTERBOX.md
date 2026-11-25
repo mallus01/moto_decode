@@ -129,25 +129,35 @@ python pipeline\try_voice.py "Salut les motards ! Aujourd'hui, on décode le mot
 - Au **premier lancement**, le modèle (~3 Go) se télécharge depuis Hugging Face : patiente.
 - Le résultat est dans `out\test-voix.wav`. Écoute-le.
 
-Les réglages par défaut visent déjà un style **TikTok dynamique**. Pour ajuster, change une variable puis relance le test :
+Par défaut, le préréglage **naturel** est utilisé : voix expressive mais sans effet robotique. La voix est générée
+**phrase par phrase**, puis passe par une petite finition (EQ + compression) qui la rend plus chaude.
+
+Si la voix sonne encore robotique ou métallique, voici dans l'ordre ce qui aide le plus :
+1. **Refaire l'échantillon** (voir [ENREGISTRER-SA-VOIX.md](ENREGISTRER-SA-VOIX.md)) : c'est la cause n°1.
+2. **Ne pas trop pousser** `MOTO_VOICE_EXAGGERATION` (au-dessus de 0.9, la voix se met à grésiller).
+3. **Ne pas accélérer** avec `MOTO_VOICE_TEMPO` (l'accélération ajoute un son métallique) : écris plutôt des phrases courtes.
+4. **Changer de tirage** si une phrase rate : `set MOTO_VOICE_SEED=2` (puis 3, 4…), et relance.
+
+Pour ajuster, change une variable puis relance le test :
 
 ```bat
-set MOTO_VOICE_EXAGGERATION=1.2
-set MOTO_VOICE_CFG=0.3
-set MOTO_VOICE_TEMP=0.9
-set MOTO_VOICE_TEMPO=1.15
+set MOTO_VOICE_EXAGGERATION=0.8
+set MOTO_VOICE_CFG=0.35
+set MOTO_VOICE_TEMP=0.8
 ```
 
-| Réglage | Effet | Calme → très dynamique | Défaut |
+| Réglage | Effet | Conseil | Défaut (naturel) |
 |---|---|---|---|
-| `MOTO_VOICE_EXAGGERATION` | énergie, émotion, intonation | 0.5 → 1.5 (au-delà : risque de voix qui déraille) | 1.0 |
-| `MOTO_VOICE_CFG` | plus **bas** = rythme plus libre et vivant | 0.6 → 0.2 | 0.3 |
-| `MOTO_VOICE_TEMP` | variation, naturel | 0.7 → 1.0 | 0.9 |
-| `MOTO_VOICE_TEMPO` | vitesse de parole (sans changer la hauteur) | 1.0 → 1.2 | 1.12 |
+| `MOTO_VOICE_PRESET` | `naturel` ou `tiktok` (anciens réglages, très énergiques) | naturel | naturel |
+| `MOTO_VOICE_EXAGGERATION` | énergie, émotion, intonation | 0.5 → 0.9 | 0.7 |
+| `MOTO_VOICE_CFG` | plus **bas** = rythme plus libre | 0.3 → 0.5 | 0.35 |
+| `MOTO_VOICE_TEMP` | variation (trop haut = voix instable) | 0.7 → 0.9 | 0.8 |
+| `MOTO_VOICE_TEMPO` | accélère le débit (crée des artefacts) | 1.0 → 1.08 | 1.0 |
+| `MOTO_VOICE_PAUSE` | silence entre deux phrases, en secondes | 0.1 → 0.3 | 0.18 |
+| `MOTO_VOICE_POLISH` | finition EQ + compression (`0` = désactivée) | 1 | 1 |
+| `MOTO_VOICE_SEED` | numéro de tirage, pour refaire une phrase ratée | 1, 2, 3… | aucun |
 
-**Le plus important reste ton échantillon** : le modèle copie le ton de `voices\mattis.wav`. Pour une voix TikTok, enregistre-le
-comme tu parles en vidéo : debout, souriant, rythme rapide, en appuyant sur les mots clés. Un échantillon calme donnera une voix calme,
-quels que soient les réglages.
+Pour revenir à zéro : `set MOTO_VOICE_EXAGGERATION=` (rien après le `=`), pareil pour les autres.
 
 ### Plusieurs échantillons de voix
 
@@ -157,7 +167,7 @@ Tu peux garder plusieurs enregistrements dans `voices\` (ex. `mattis-calme.wav`,
 set MOTO_VOICE_REF=voices\mattis-energique.wav
 ```
 
-Sans cette variable, c'est `voices\mattis.wav` qui est utilisé. Pour garder un choix par défaut : `setx MOTO_VOICE_REF voices\mattis-energique.wav`.
+Sans cette variable, c'est `voices\mattis2.wav` qui est utilisé (ou `voices\mattis.wav` s'il n'existe pas). Pour garder un choix par défaut : `setx MOTO_VOICE_REF voices\mattis-energique.wav`.
 
 ## 7. Faire une vidéo avec ta voix
 
