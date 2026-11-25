@@ -72,7 +72,7 @@ Avec ta phrase : `python pipeline\google_voices.py all "Salut les motards !"`
 
 ## 6. Choisir ta voix et faire une vidéo
 
-Quand tu as choisi (par ex. `fr-FR-Chirp3-HD-Charon`) :
+Quand tu as choisi (par ex. `fr-FR-Chirp3-HD-Enceladus`) :
 
 ```bat
 setx MOTO_GOOGLE_VOICE fr-FR-Chirp3-HD-Charon
@@ -91,7 +91,7 @@ Réglages :
 
 | Variable | Effet | Défaut |
 |---|---|---|
-| `MOTO_GOOGLE_VOICE` | nom exact de la voix | `fr-FR-Chirp3-HD-Charon` |
+| `MOTO_GOOGLE_VOICE` | nom exact de la voix | `fr-FR-Chirp3-HD-Enceladus` |
 | `MOTO_GOOGLE_RATE` | vitesse (1.0 = normal, 1.2 = rapide) | 1.1 |
 
 Les voix sont gardées en cache : refaire une vidéo sans changer le texte ne consomme **aucun** caractère.
@@ -100,7 +100,7 @@ Les voix sont gardées en cache : refaire une vidéo sans changer le texte ne co
 
 | Message | Solution |
 |---|---|
-| `Clé Google introuvable` | Le fichier `voices\google-key.txt` n'existe pas ou est vide. |
+| `Clé Google introuvable` | Le fichier `voices\google-key.txt` n'existe pas ou est vide. Vérifie avec `dir voices`. Pour le créer sans le Bloc-notes : `echo AIza...ta_cle...> voices\google-key.txt` (pas d'espace avant `>`). |
 | `API key not valid` | Clé mal copiée (espace, guillemets ?). Recolle-la. |
 | `… has not been used in project … or it is disabled` | L'API n'est pas activée (étape 2), ou attends 2-3 minutes après l'activation. |
 | `billing` / `BILLING_DISABLED` | Le compte de facturation n'est pas associé au projet (étape 2.3). |
