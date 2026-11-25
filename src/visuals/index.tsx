@@ -4,6 +4,7 @@ import { OilCheck } from "./OilCheck";
 import { MotoBike } from "./MotoBike";
 import { Clutch, ClutchLever } from "./Clutch";
 import { Chain, ChainLink } from "./Chain";
+import { Brake, BrakePads } from "./Brake";
 import { Pistou } from "../components/Mascots";
 import { LogoMark } from "../components/Logo";
 
@@ -25,6 +26,10 @@ export const Visual: React.FC<{ spec?: VisualSpec }> = ({ spec }) => {
       return <Chain mode={s.mode} labels={s.labels} />;
     case "chainlink":
       return <ChainLink />;
+    case "brake":
+      return <Brake mode={s.mode} labels={s.labels} />;
+    case "brakepads":
+      return <BrakePads />;
     case "oilcheck":
       return <OilCheck />;
     case "mascot":

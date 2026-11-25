@@ -30,7 +30,7 @@ Crée `content/<slug>/script.json` (slug en kebab-case sans accents). Format : v
 
 ## 2. Les visuels
 Chaque scène a un `visual` dont `kind` est déclaré dans `src/visuals/index.tsx`.
-Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `chain` (transmission secondaire : `mode` parts | ratio | drive | slack), `chainlink` (zoom sur les maillons), `mascot` (Pistou, `pose` wave | wrench | think), `logo`.
+Existants : `bike` (moto de profil, `focus`, `label`, `boom`), `engine4t` (coupe moteur animée : `stroke`, `speed`, `labels`, `highlight`), `oilcheck`, `clutch` (embrayage en coupe : `state` engaged | disengaged | slip | cycle, `labels`), `clutchlever` (garde du levier), `chain` (transmission secondaire : `mode` parts | ratio | drive | slack), `chainlink` (zoom sur les maillons), `brake` (frein à disque + coupe de l'étrier : `mode` parts | squeeze | heat), `brakepads` (usure des plaquettes + liquide), `mascot` (Pistou, `pose` wave | wrench | think), `logo`.
 Si le sujet en demande un nouveau (chaîne, frein, bougie, embrayage…), **crée-le** dans `src/visuals/<Nom>.tsx` :
 - SVG React, `viewBox="0 0 600 900"`, animé avec `useCurrentFrame()` (jamais de CSS animation ni `Math.random`).
 - Style **flat design** (palette « Huile & acier », voir `brand/BRAND.md`) : aplats de `BRAND.colors`, **pas de contour** ni de dégradé,

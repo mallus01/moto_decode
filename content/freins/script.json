@@ -1,0 +1,74 @@
+{
+  "slug": "freins",
+  "title": "Épisode 4 · Les freins",
+  "scenes": [
+    {
+      "type": "hook",
+      "heading": "*70%* du freinage à l'avant !",
+      "kicker": "Les freins",
+      "narration": "Sur ta moto, le frein avant fait environ soixante-dix pour cent du freinage ! Pourquoi ? On décode les freins.",
+      "visual": {
+        "kind": "bike",
+        "focus": "brake",
+        "label": "FREINS"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Les pièces",
+      "narration": "Tu serres le levier. Le maître-cylindre pousse le liquide de frein dans la durite, jusqu'à l'étrier, à cheval sur le disque.",
+      "visual": {
+        "kind": "brake",
+        "mode": "parts"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Ça pince !",
+      "narration": "Dans l'étrier, le liquide pousse des pistons. Ils plaquent deux plaquettes contre le disque, qui pincent et ralentissent la roue.",
+      "visual": {
+        "kind": "brake",
+        "mode": "squeeze"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "La chaleur",
+      "narration": "Freiner, c'est transformer ta vitesse en chaleur. Au freinage appuyé, le disque peut dépasser trois cents degrés !",
+      "visual": {
+        "kind": "brake",
+        "mode": "heat"
+      }
+    },
+    {
+      "type": "explain",
+      "heading": "Son rôle",
+      "narration": "Quand tu freines, le poids bascule vers l'avant et écrase le pneu avant au sol. C'est pour ça que le frein avant fait l'essentiel du travail.",
+      "visual": {
+        "kind": "bike",
+        "focus": "brake",
+        "label": "70 % AVANT"
+      }
+    },
+    {
+      "type": "tip",
+      "heading": "Plaquettes et liquide",
+      "narration": "Regarde tes plaquettes : quand la rainure d'usure a disparu, change-les. Et remplace le liquide de frein environ tous les deux ans, selon ton manuel.",
+      "visual": {
+        "kind": "brakepads"
+      }
+    }
+  ],
+  "outro": {
+    "narration": "Abonne-toi ! La prochaine fois, on décode les pneus.",
+    "next": "Les pneus"
+  },
+  "description": "70 % du freinage se fait à l'avant 🤯\nFreins moto, comment ça marche : levier, maître-cylindre, étrier, plaquettes, disque, et l'entretien des plaquettes et du liquide de frein 🏍️\nTu changes tes plaquettes tous les combien ? Dis-le en commentaire 👇",
+  "hashtags": [
+    "moto",
+    "motard",
+    "freinmoto",
+    "entretienmoto",
+    "apprendresurtiktok"
+  ]
+}
